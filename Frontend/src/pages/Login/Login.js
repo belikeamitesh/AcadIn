@@ -1,6 +1,8 @@
 import React from "react"
 import styles from "./Login.module.css";
-import { useState } from "react"
+import { useState } from "react";
+
+import {Link} from "react-router-dom";
 export default function Login() {
 
     const [Shown, setShown] = useState(false);
@@ -24,7 +26,8 @@ export default function Login() {
                     </div>
                     <button className={styles.loginButton}>Log In</button>
                     <span className={styles.register}>New to AcadIn?
-                        <a href="Login.js" className={styles.regis}> Register Here</a>
+                        <Link to='/register' className={styles.regis}>Register Here</Link>
+                        {/* <a href="Login.js" className={styles.regis}> Register Here</a> */}
                     </span>
                 </div>
             </div>
