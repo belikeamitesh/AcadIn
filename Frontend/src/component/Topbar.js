@@ -25,7 +25,7 @@ export default function Topbar() {
                         <span className="badge">1</span>
                     </div>
                     <div className="fonticon">
-                        <i class="fa-solid fa-message"></i>
+                        <i className="fa-solid fa-message"></i>
                         <span className="badge">2</span>
                     </div>
                     <div className="fonticon">
