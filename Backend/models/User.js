@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     college: {
         type: String,
         max: 50,
-      },
+    },
     bio: {
         type: String
     }

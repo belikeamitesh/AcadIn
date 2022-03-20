@@ -25,7 +25,10 @@ export default function Login() {
             dispatch({type: "LOGIN_SUCCESS", payload: res.data});
             navigate('/');
         } catch (error) {
-            console.error(error);
+            if(error.response)
+                console.log(error.response.data);
+            else
+                console.error(error);
             dispatch({type: "LOGIN_FAILURE", payload: error});
         }
             
