@@ -1,11 +1,12 @@
 import React, { useContext, useRef } from "react"
 import styles from "./Login.module.css";
 import { useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { AuthContext } from "../../context/AuthContext";
 
+import { Link } from "react-router-dom";
 export default function Login() {
     const navigate = useNavigate();
     const [Shown, setShown] = useState(false);
@@ -15,26 +16,24 @@ export default function Login() {
 
     const email = useRef();
     const password = useRef();
-    const {user, isFetching, error, dispatch} = useContext(AuthContext);
+    const { user, isFetching, error, dispatch } = useContext(AuthContext);
     const handleClick = async (e) => {
         e.preventDefault();
-        dispatch({type: "LOGIN_START"});
+        dispatch({ type: "LOGIN_START" });
         try {
-            const res = await axios.post("http://localhost:5000/auth/login", {email:email.current.value, password:password.current.value});
+            const res = await axios.post("http://localhost:5000/auth/login", { email: email.current.value, password: password.current.value });
             console.log(res);
-            dispatch({type: "LOGIN_SUCCESS", payload: res.data});
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
             navigate('/');
         } catch (error) {
-            if(error.response)
-                console.log(error.response.data);
-            else
-                console.error(error);
-            dispatch({type: "LOGIN_FAILURE", payload: error});
+            console.error(error);
+            dispatch({ type: "LOGIN_FAILURE", payload: error });
         }
-            
+
     }
     console.log(user);
     return (
+        document.body.style.backgroundColor = "white",
         <div className={styles.login}>
             <div className={styles.logo}>
                 <span className={styles.loginLogo}>Acad</span>
@@ -51,7 +50,6 @@ export default function Login() {
                     <button className={styles.loginButton} onClick={handleClick}>Log In</button>
                     <span className={styles.register}>New to AcadIn?
                         <Link to='/register' className={styles.regis}>Register Here</Link>
-                        {/* <a href="Login.js" className={styles.regis}> Register Here</a> */}
                     </span>
                 </div>
             </div>

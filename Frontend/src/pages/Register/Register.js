@@ -33,6 +33,7 @@ export default function Register() {
         }
     }
     return (
+        document.body.style.backgroundColor = "white",
         <div className={styles.register}>
             <div className={styles.logo}>
                 <span className={styles.registerLogo}>Acad</span>
