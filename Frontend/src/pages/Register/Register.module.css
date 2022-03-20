@@ -66,6 +66,9 @@
     justify-content: center;
     display: flex;
 }
+.registerInput{
+    outline: none;
+}
 .registerButton{
     height: 50px;
     border-radius: 60px;

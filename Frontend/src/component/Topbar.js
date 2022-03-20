@@ -1,5 +1,6 @@
 import React from "react"
 import "./topbar.css"
+import { Link } from "react-router-dom"
 
 export default function Topbar() {
     return (
@@ -18,22 +19,34 @@ export default function Topbar() {
             <div className="right">
                 <div className="topbaricons">
                     <div className="fonticon">
-                        <i className="fa-solid fa-house-chimney"></i>
+                        <Link to='/' className="links"> <i className="fa-solid fa-house-chimney"></i> </Link>
                     </div>
                     <div className="fonticon">
                         <i className="fa-solid fa-user-plus"></i>
                         <span className="badge">1</span>
                     </div>
                     <div className="fonticon">
-                        <i class="fa-solid fa-message"></i>
-                        <span className="badge">2</span>
+                        <Link to='/chat' className="links">
+                            <i class="fa-solid fa-message"></i>
+                            <span className="badge">2</span>
+                        </Link>
                     </div>
                     <div className="fonticon">
-                        <i className="fa-solid fa-bell" aria-hidden="true"></i>
-                        <span className="badge">1</span>
+                        <Link to='/notification' className="links">
+                            <i className="fa-solid fa-bell" aria-hidden="true"></i>
+                            <span className="badge">1</span>
+                        </Link>
                     </div>
                 </div>
-                <img src="1.jpg" alt="" className="pic" />
+                <Link to='/profile' className="links">
+                    <img src="profile.jpg" alt="" className="pic" />
+                </Link>
+                <Link to='/login' className="links">
+                    <div className="logout">
+                        <span className="logoutbutton"> Logout </span>
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </div>
+                </Link>
             </div>
         </div>
     )

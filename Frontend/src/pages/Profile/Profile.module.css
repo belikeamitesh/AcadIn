@@ -1,0 +1,163 @@
+.page{
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.profile{
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+.info{
+    margin-top: 40px;
+    margin-left: 260px;
+    margin-right: 260px;
+    height: auto;
+    display:flex;
+    box-shadow: 0 0 8px 1px rgb(33, 20, 46);
+    background-color: rgb(247, 240, 240);
+    flex-direction: column;
+    justify-content:space-between;
+}
+.cover{
+    height: 474px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.coverpic{
+    width: stretch;
+    height: 360px;
+    object-fit: cover;
+}
+.editcover{
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 8px;
+    position: absolute;
+    float: right;
+    margin-top: 16px;
+    margin-left: 16px;
+    font-size: 20px;
+    border-color: white;
+}
+.editprofile{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: rgb(112, 97, 97);
+    border: 3px solid rgb(32, 29, 29);;
+    color: white;
+    position: absolute;
+    object-fit: cover;
+    left: 0;
+    right: 0; 
+    margin-top: 410px;
+    margin-left: auto;
+    margin-right: 400px;
+}
+.profilepic{
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 240px;
+    border: 4px solid rgb(133, 119, 119);
+}
+.username{
+    text-align: center;
+    margin: auto;
+    font-size: 28px;
+}
+.bio{
+    text-align: center;
+    font-size: 18px;
+    margin: auto;
+    padding-top: 6px;
+    max-width: 30ch;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+.about{
+    margin-top: 20px;
+    margin-left: 260px;
+    margin-right: 260px;
+    height: auto;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+.wrap{
+    display: flex;
+}
+.feed{
+    flex: 5;
+}
+.division{
+    box-shadow: 0 0 4px 1px rgb(42, 39, 46);
+    margin: 30px;
+    border-radius: 3%;
+    padding: 12px;
+    padding-left: 18px;
+    height:auto;
+    background-color: rgb(58, 49, 49);
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    color:white;
+}
+.heading{
+    padding-top: 20px;
+    font-size: 26px;
+    padding-bottom: 8px;
+}
+.value{
+    font-size: 18px;
+    max-width: 36ch;
+    padding-bottom: 16px;
+}
+.friend{
+    padding-top: 2px;
+    font-size: 26px;
+    padding-bottom: 8px;
+}
+.friendflex{
+    display: flex;
+    flex-direction: column;
+}
+.friendlist{
+    display: flex;
+    margin-top: 10px;
+}
+.pic{
+    flex: 5;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.friendname{
+    flex: 7;
+    font-size: 24px;
+    margin-left: 20px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+.post{
+    flex: 6;
+    box-shadow: 0 0 4px 1px rgb(33, 20, 46);
+    margin: 30px;
+    padding: 10px;
+    height: fit-content;
+}

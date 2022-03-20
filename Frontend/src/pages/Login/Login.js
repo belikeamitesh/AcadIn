@@ -2,7 +2,7 @@ import React from "react"
 import styles from "./Login.module.css";
 import { useState } from "react";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Login() {
 
     const [Shown, setShown] = useState(false);
@@ -11,6 +11,7 @@ export default function Login() {
     };
 
     return (
+        document.body.style.backgroundColor = "white",
         <div className={styles.login}>
             <div className={styles.logo}>
                 <span className={styles.loginLogo}>Acad</span>
@@ -27,7 +28,6 @@ export default function Login() {
                     <button className={styles.loginButton}>Log In</button>
                     <span className={styles.register}>New to AcadIn?
                         <Link to='/register' className={styles.regis}>Register Here</Link>
-                        {/* <a href="Login.js" className={styles.regis}> Register Here</a> */}
                     </span>
                 </div>
             </div>
