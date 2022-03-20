@@ -1,15 +1,37 @@
-import React from "react"
+import React, { useContext, useRef } from "react"
 import styles from "./Login.module.css";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import { AuthContext } from "../../context/AuthContext";
 
 import { Link } from "react-router-dom";
 export default function Login() {
-
+    const navigate = useNavigate();
     const [Shown, setShown] = useState(false);
     const togglePassword = () => {
         setShown(!Shown);
     };
 
+    const email = useRef();
+    const password = useRef();
+    const { user, isFetching, error, dispatch } = useContext(AuthContext);
+    const handleClick = async (e) => {
+        e.preventDefault();
+        dispatch({ type: "LOGIN_START" });
+        try {
+            const res = await axios.post("http://localhost:5000/auth/login", { email: email.current.value, password: password.current.value });
+            console.log(res);
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+            navigate('/');
+        } catch (error) {
+            console.error(error);
+            dispatch({ type: "LOGIN_FAILURE", payload: error });
+        }
+
+    }
+    console.log(user);
     return (
         document.body.style.backgroundColor = "white",
         <div className={styles.login}>
@@ -20,12 +42,12 @@ export default function Login() {
             <div className={styles.loginbox}>
                 <div className={styles.box}>
                     <span className={styles.log}>Login</span>
-                    <input placeholder="Email" className={styles.loginInput} required />
+                    <input placeholder="Email" className={styles.loginInput} required ref={email} />
                     <div className={styles.loginInput}>
-                        <input type={Shown ? "text" : "password"} placeholder="Password" className={styles.pass} required />
+                        <input type={Shown ? "text" : "password"} placeholder="Password" className={styles.pass} required ref={password} />
                         <i className="fa-solid fa-eye" onClick={togglePassword}></i>
                     </div>
-                    <button className={styles.loginButton}>Log In</button>
+                    <button className={styles.loginButton} onClick={handleClick}>Log In</button>
                     <span className={styles.register}>New to AcadIn?
                         <Link to='/register' className={styles.regis}>Register Here</Link>
                     </span>
