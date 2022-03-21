@@ -81,6 +81,12 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+.nochat{
+    display: flex;
+    align-self: center;
+    margin-top: 16px;
+    font-size: 16px;
+}
 .friendlist{
     height: 72px;
     display: flex;
@@ -142,9 +148,24 @@
 .menu{
     margin-left: auto;
     margin-right: 30px;
-    margin-top: 12px;
+    margin-top: 13px;
     font-size: 24px;
     color: rgb(218, 201, 201);
+}
+.deletechat{
+    border-style: solid;
+    font-size: 18px;
+    padding: 2px;
+    padding-left: 8px;
+    border-radius: 4px;
+    font-weight: 380;
+    padding-right: 8px;
+    border-width: 1px;
+    border-color: rgb(128, 124, 124);
+    cursor: pointer;
+}
+.deletechat:hover{
+    background-color: rgb(75, 71, 71);
 }
 .middle{
     flex: 22;

@@ -22,6 +22,7 @@ export default function Chat() {
                         </div>
                     </div>
                     <div className={styles.friend}>
+                        {/* <span className={styles.nochat}>You don't have any  Conversation ( If no chat )</span> */}
                         <div className={styles.friendlist}>
                             <img src="1.jpg" alt="" className={styles.pic} />
                             <div className={styles.chattab}>
@@ -50,7 +51,7 @@ export default function Chat() {
                         <img src="1.jpg" alt="" className={styles.profilepic} />
                         <h3 className={styles.username}>Ankit Singh</h3>
                         <div className={styles.menu}>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <span className={styles.deletechat}> Delete Chat </span>
                         </div>
                     </div>
                     <div className={styles.middle}>

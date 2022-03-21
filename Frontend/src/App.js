@@ -20,8 +20,7 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/notification" element={<Notification />}></Route>
-        {/* <Route path="/forum" element={<Forum />}></Route> */}
-
+        <Route path="/forum" element={<Forum />}></Route>
       </Routes>
     </Router>
   )

@@ -1,0 +1,201 @@
+.page{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(240, 221, 221);
+}
+.content{
+    margin-top: 23px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    background-color: rgb(54, 46, 46);
+    display: flex;
+    height: 86vh;
+}
+.left{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    border-right-style: solid;
+    border-color: rgb(110, 108, 105);
+    border-width: 1px;
+}
+.user{
+    padding: 4px;
+    height: 66px;
+    display: flex;
+    flex-direction: row;
+    border-bottom-style: solid;
+    border-color: rgb(155, 153, 149);
+    border-width: 4px;
+}
+.heading{
+    font-size: 28px;
+    margin-left: 30px;
+    margin-top: 12px;
+}
+.friend{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.nochat{
+    display: flex;
+    align-self: center;
+    margin-top: 16px;
+    font-size: 16px;
+}
+.friendlist{
+    height: 72px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top-style: solid;
+    border-color: rgb(88, 88, 86);
+    border-width: 1px;
+    cursor: pointer;
+}
+.friendlist:hover{
+    background-color: rgb(97, 97, 92);
+}
+.chattab{
+    display: flex;
+    flex-direction: column;
+}
+.friendname{
+    font-size: 20px;
+    margin-left: 24px;
+    max-width: 30ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lastchat{
+    margin-left: 24px;
+    max-width: 44ch;
+    font-size: 16px;
+    color: rgb(190, 179, 179);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.right{
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+}
+.top{
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+}
+.username{
+    font-size: 24px;
+    margin-left: 28px;
+    margin-top: 17px;
+}
+.menu{
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 13px;
+    font-size: 24px;
+    color: rgb(218, 201, 201);
+}
+.deletechat{
+    border-style: solid;
+    font-size: 18px;
+    padding: 2px;
+    padding-left: 8px;
+    border-radius: 4px;
+    font-weight: 380;
+    padding-right: 8px;
+    border-width: 1px;
+    border-color: rgb(128, 124, 124);
+    cursor: pointer;
+}
+.deletechat:hover{
+    background-color: rgb(75, 71, 71);
+}
+.middle{
+    flex: 22;
+    overflow-y: auto;
+    padding-top: 18px;
+    padding-bottom: 14px;
+    overflow-x: hidden;
+    background-color: rgb(31, 28, 28);
+    display: flex;
+    flex-direction: column;
+}
+.senttext{
+    margin-left: auto;
+    margin-right: 30px;
+    margin-bottom: 8px;
+    background-color: rgb(107, 90, 90);
+    width:fit-content;
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 16px;
+    max-width: 40ch;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.sender{
+    font-size: 14px;
+    font-weight: bold;
+    color: greenyellow;
+}
+.received{
+    margin-left: 30px;
+    margin-bottom: 8px;
+    background-color: rgb(65, 56, 56);
+    width:fit-content;
+    padding: 7px;
+    padding-left: 16px;
+    padding-right: 10px;
+    max-width: 40ch;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.receiver{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(189, 193, 253);
+}
+.bottom{
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.message{
+    background-color: rgb(77, 67, 67);
+    margin-left: 24px;
+    margin-right: 24px;
+    width: 100%;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.textarea{
+    font-size: 17px;
+    width: 100%;
+    margin-left: 14px;
+    border: none;
+    display: flex;
+    background-color: rgb(77, 67, 67);
+    color: white;
+}
+.textarea:focus{ 
+    outline: none;
+}
+.send{
+    margin-right: 40px;
+    font-size: 26px;
+    color: rgb(143, 129, 129);
+    margin-bottom: 4px;
+    cursor: pointer;
+}
