@@ -185,13 +185,6 @@
     flex-direction: row;
     align-items: center;
 }
-.emoji{
-    margin-left: 36px;
-    font-size: 28px;
-    color: rgb(151, 135, 135);
-    margin-bottom: 4px;
-    cursor: pointer;
-}
 .message{
     background-color: rgb(77, 67, 67);
     margin-left: 24px;

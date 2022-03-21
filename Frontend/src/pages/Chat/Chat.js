@@ -62,9 +62,6 @@ export default function Chat() {
                         </div>
                     </div>
                     <div className={styles.bottom}>
-                        <div className={styles.emoji}>
-                            <i class="fa-regular fa-face-grin"></i>
-                        </div>
                         <div className={styles.message}>
                             <input placeholder="Type a message" className={styles.textarea}></input>
                         </div>
