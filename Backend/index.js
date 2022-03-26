@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 
 const authRoutes = require("./routes/Auth");
+const userRoutes = require("./routes/Users");
 
 mongoose
     .connect(process.env.MONGO_URI)
@@ -15,6 +16,7 @@ mongoose
 
 app.use(express.json());
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Backend server started on port ${process.env.PORT}`);

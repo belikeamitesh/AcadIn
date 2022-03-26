@@ -28,8 +28,17 @@ const userSchema = mongoose.Schema({
         type: String,
         max: 50,
     },
-    bio: {
-        type: String
+    education:{
+        type: String,
+        default:""
+    },
+    experience:{
+        type: String,
+        default: ""
+    },
+    bio:{
+        type: String,
+        default:""
     }
 },
 { timestamps: true }

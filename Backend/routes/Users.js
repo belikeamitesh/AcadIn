@@ -28,7 +28,7 @@ router.put("/:id", async (req, res) => {
 
 //delete user
 router.delete("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
+  if (req.body.userId === req.params.id) {
     try {
       await User.findByIdAndDelete(req.params.id);
       res.status(200).json("Account has been deleted");
@@ -116,6 +116,28 @@ router.put("/:id/unfollow", async (req, res) => {
     }
   } else {
     res.status(403).json("you cant unfollow yourself");
+  }
+});
+
+router.put("/:id/updatebio", async(req, res) => {
+  if(req.body.userId === req.params.id) {
+    try {
+      await User.updateOne({_id:req.params.id}, {bio:req.body.bio});
+      res.status(200).json("Bio has been updated");
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+});
+
+router.put("/:id/updateeducation", async(req, res) => {
+  if(req.body.userId === req.params.id) {
+    try {
+      await User.updateOne({_id:req.params.id}, {bio:req.body.education});
+      res.status(200).json("Bio has been updated");
+    } catch (error) {
+      res.status(500).json(error);
+    }
   }
 });
 
