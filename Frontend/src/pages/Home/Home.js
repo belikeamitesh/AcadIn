@@ -11,7 +11,7 @@ export default function Home() {
     return (
         document.body.style.backgroundColor = "white",
         <>
-            <Forum />
+            <Profile />
         </>
     )
 }

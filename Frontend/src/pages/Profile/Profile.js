@@ -1,8 +1,23 @@
 import React from "react"
 import styles from "./Profile.module.css";
 import Topbar from "../../component/Topbar";
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 
 export default function Profile() {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         document.body.style.backgroundColor = "white",
         <div className={styles.page}>
@@ -21,6 +36,66 @@ export default function Profile() {
                     </div>
                     <h4 className={styles.username}>THOR : GOD OF THUNDER</h4>
                     <span className={styles.bio}> Hi I am Thor, The God of Thunder from Asgard (Bio) </span>
+                    {/* Remove edituderprofile for friend's profile */}
+                    <span className={styles.edituserprofile} onClick={handleClickOpen}>
+                        <i class="fa-solid fa-pen"></i>
+                        <span className={styles.space}>Edit profile</span>
+                    </span>
+                    <Dialog open={open} onClose={handleClose}>
+                        <div className={styles.dialog}>
+                            <DialogTitle >
+                                <div className={styles.dialogtitle}>
+                                    <span className={styles.dialogtit}>Edit Profile</span>
+                                    <span className={styles.dialogwarn}>Warning* : Don't enter anything to the field that you don't want to change</span>
+                                </div>
+                                <hr></hr>
+                            </DialogTitle>
+                            <DialogContent>
+                                <div className={styles.dialogbody}>
+                                    <span className={styles.dialogtext}>Name </span>
+                                    <input placeholder="Enter your Name" className={styles.dialoginput} />
+                                </div>
+                                <div className={styles.dialogbody}>
+                                    <span className={styles.dialogtext}>Bio </span>
+                                    <input placeholder="Enter bio here" className={styles.dialoginput} />
+                                </div>
+                                <div className={styles.dialogbody}>
+                                    <span className={styles.dialogtext}>Education </span>
+                                    <input placeholder="Enter you Highest Education" className={styles.dialoginput} />
+                                </div>
+                                <div className={styles.dialogbody}>
+                                    <span className={styles.dialogtext}>Experience </span>
+                                    <input placeholder="Enter your Experience" className={styles.dialoginput} />
+                                </div>
+                                <div className={styles.dialogbody}>
+                                    <span className={styles.dialogtext}>About </span>
+                                    <input placeholder="Enter about you" className={styles.dialoginput} />
+                                </div>
+                            </DialogContent>
+                            <DialogActions>
+                                <div className={styles.dialogclose} onClick={handleClose}>
+                                    <span className={styles.dialogcancel}> Cancel </span>
+                                    <span className={styles.dialogsave}> Save Changes </span>
+                                </div>
+                            </DialogActions>
+                        </div>
+                    </Dialog>
+                    {/* Remove addnew division for self profile */}
+                    <div className={styles.addnew}>
+                        <span className={styles.addfriend}>
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span className={styles.space}>Add Friend</span>
+                        </span>
+                        {/* Remove friend, if already a friend */}
+                        {/* <span className={styles.removefriend}>
+                            <i class="fa-solid fa-user-minus"></i>
+                            <span className={styles.space}>Remove Friend</span>
+                        </span> */}
+                        <span className={styles.textfriend}>
+                            <i class="fa-brands fa-facebook-messenger"></i>
+                            <span className={styles.space}>Message</span>
+                        </span>
+                    </div>
                 </div>
                 <div className={styles.about}>
                     <div className={styles.wrap}>
