@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import styles from "./Register.module.css"
 import { useState } from "react"
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -11,11 +11,11 @@ export default function Register() {
     const togglePassword = () => {
         setShown(!Shown);
     };
-    
+
     const email = useRef();
     const password = useRef();
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const user = {
             email: email.current.value,
@@ -26,7 +26,7 @@ export default function Register() {
             console.log(res);
             navigate("/login");
         } catch (error) {
-            if(error.response)
+            if (error.response)
                 console.log(error.response.data);
             else
                 console.error(error);
@@ -42,6 +42,7 @@ export default function Register() {
             <div className={styles.registerbox}>
                 <div className={styles.box}>
                     <span className={styles.regis}>Sign Up</span>
+                    <input placeholder="Name" className={styles.registerInput} required />
                     <input placeholder="Email" className={styles.registerInput} required ref={email} />
                     <div className={styles.registerInput}>
                         <input type={Shown ? "text" : "password"} placeholder="Password" className={styles.pass} required ref={password} />
