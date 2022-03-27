@@ -29,7 +29,7 @@
     padding-left: 38%;
 }
 .box{
-    height: 420px;
+    height: 340px;
     width: 320px;
     padding: 40px;
     background-color: white;
@@ -37,7 +37,7 @@
     display: flex;
     box-shadow: 0 0 8px 1px rgb(139, 45, 228);
     flex-direction: column;
-    justify-content:space-evenly;
+    justify-content:space-between;
 }
 .regis{
     margin-left: 80px;
