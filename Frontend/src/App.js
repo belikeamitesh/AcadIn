@@ -6,6 +6,7 @@ import Profile from "./pages/Profile/Profile";
 import Chat from "./pages/Chat/Chat";
 import Notification from "./pages/Notification/Notification";
 import Forum from "./pages/Forum/Forum";
+import Search from "./pages/Search/Search";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 
@@ -15,12 +16,14 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
+        <Route path="/home" element={<Home/>}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/notification" element={<Notification />}></Route>
         <Route path="/forum" element={<Forum />}></Route>
+        <Route path="/search" element={<Search/>}></Route>
       </Routes>
     </Router>
   )
