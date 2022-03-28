@@ -7,6 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
+import Feed from "../../component/feed/Feed";
 
 export default function Profile() {
     const [open, setOpen] = React.useState(false);
@@ -141,7 +142,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className={styles.post}>
-                            The Home page Center post page to be called here ( Ananya )
+                            <Feed />
                         </div>
                     </div>
                 </div>
