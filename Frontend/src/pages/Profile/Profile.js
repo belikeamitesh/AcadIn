@@ -11,6 +11,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Feed from "../../component/feed/Feed";
 import { AuthContext } from "../../context/AuthContext";
+import {Link} from "react-router-dom";
 
 export default function Profile() {
     const [open, setOpen] = useState(false);
@@ -124,10 +125,10 @@ export default function Profile() {
                             <i class="fa-solid fa-user-minus"></i>
                             <span className={styles.space}>Remove Friend</span>
                         </span> */}
-                        <span className={styles.textfriend}>
+                       <Link to="/chat"> <span className={styles.textfriend}>
                             <i class="fa-brands fa-facebook-messenger"></i>
                             <span className={styles.space}>Message</span>
-                        </span>
+                        </span></Link>
                     </div>
                 </div>
                 <div className={styles.about}>

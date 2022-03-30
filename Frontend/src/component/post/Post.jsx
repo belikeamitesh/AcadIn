@@ -1,56 +1,85 @@
-import React from 'react'
-import "./post.css"
-import { MoreVert,ThumbUp,Comment,Forum} from "@material-ui/icons";
 
-export default function Post() {
+import { MoreVert } from "@material-ui/icons";
+import React,{ useContext, useEffect, useState } from "react";
+import axios from "axios";
+import style from "./post.module.css";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import {like} from "../../like.png";
+import {heart} from "../../heart.png";
+
+export default function Post({ post }) {
+  const [like, setLike] = useState(post.likes.length);
+  const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
+  const PF = process.env.PUBLIC_URL;
+  const { user: currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`http://localhost:5000/user?userId=${post.userId}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [post.userId]);
+
+  const likeHandler = () => {
+    try {
+      axios.put("http://localhost:5000/posts/" + post._id + "http://localhost:5000/like", { userId: currentUser._id });
+    } catch (err) {}
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
   return (
-    <div className="post">
-      <div className="postWrapper">
-        <div className="postTop">
-          <div className="postTopLeft">
-            <img
-              className="postProfileImg"
-              src="/assets/person/1.jpg"
-              alt=""
-            />
-            <span className="postUsername">Rani Sharma</span>
-            <span className="postDate">25 mins ago</span>
+    <div className={style.post}>
+      <div className={style.postWrapper}>
+        <div className={style.postTop}>
+          <div className={style.postTopLeft}>
+            <Link to={`/profile/${user.username}`}>
+              <img
+                className={style.postProfileImg}
+                src={
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "Person/noAvatar.png"
+                }
+                alt=""
+              />
+            </Link>
+            <span className={style.postUsername}>{user.username}</span>
+            <span className={style.postDate}>{format(post.createdAt)}</span>
           </div>
-          <div className="postTopRight">
+          <div className={style.postTopRight}>
             <MoreVert />
           </div>
         </div>
-        <div className="postCenter">
-          <span className="postText">Hey! Its my first post:)</span>
-          <img src="assets/post/1.png" className="postImg" alt="" />
+        <div className={style.postCenter}>
+          <span className={style.postText}>{post.desc}</span>
+          <img className={style.postImg} src={PF + post.img} alt="" />
         </div>
-        <hr className="postHr" />
-        <div className="postBottom">
-          {/* <div className="postBottomLeft">
-            <img className="likeIcon" src="assets/like.png" alt="" />
-            <img className="likeIcon" src="assets/heart.png" alt="" />
-            <span className="postLikeCounter">12 people like it</span>
+        <div className={style.postBottom}>
+          <div className={style.postBottomLeft}>
+            <img
+              className={style.likeIcon}
+              src={like}
+              onClick={likeHandler}
+              alt=""
+            />
+            <img
+              className={style.likeIcon}
+              src={heart}
+              onClick={likeHandler}
+              alt=""
+            />
+            <span className={style.postLikeCounter}>{like} people like it</span>
           </div>
-          <div className="postBottomRight">
-            <span className="postCommentText">18 comments</span>
-          </div> */}
-          <div className='postLike'>
-            <li className="sidebarListItem">
-              <ThumbUp className="sidebarIcon"/>
-              <span className="sidebarListItemText">Like</span>
-            </li>
-          </div>
-          <div className='postComment'>
-            <li className="sidebarListItem">
-              <Comment className="sidebarIcon"/>
-              <span className="sidebarListItemText">Comment</span>
-            </li> 
-          </div>
-          <div className='postCreateForum'>
-          <li className="sidebarListItem">
-              <Forum className="sidebarIcon"/>
-              <span className="sidebarListItemText">Create Discussion Forum</span>
-            </li>
+          <div className={style.postBottomRight}>
+            <span className={style.postCommentText}>{post.comment} comments</span>
           </div>
         </div>
       </div>

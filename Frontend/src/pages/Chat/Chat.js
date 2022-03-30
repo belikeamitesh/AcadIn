@@ -3,6 +3,7 @@ import styles from "./Chat.module.css";
 import Topbar from "../../component/Topbar";
 
 export default function Chat() {
+    
     return (
         document.body.style.backgroundColor = "rgb(17, 16, 16)",
         < div className={styles.page} >
