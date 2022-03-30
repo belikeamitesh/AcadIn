@@ -9,6 +9,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Feed from "../../component/feed/Feed";
 
 export default function Profile() {
     const [open, setOpen] = useState(false);
@@ -170,7 +171,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className={styles.post}>
-                            The Home page Center post page to be called here ( Ananya )
+                            <Feed />
                         </div>
                     </div>
                 </div>

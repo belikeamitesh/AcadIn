@@ -156,7 +156,7 @@
     display: flex;
 }
 .feed{
-    flex: 5;
+    flex: 6;
 }
 .division{
     box-shadow: 0 0 4px 1px rgb(42, 39, 46);
@@ -212,7 +212,7 @@
     cursor: pointer;
 }
 .post{
-    flex: 6;
+    flex: 8;
     box-shadow: 0 0 4px 1px rgb(33, 20, 46);
     margin: 30px;
     padding: 10px;
