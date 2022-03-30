@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import "./topbar.css"
 import { Link } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
 
 export default function Topbar() {
+    const {user} = useContext(AuthContext);
+    
     return (
         <div className="topbar">
             <div className="left">
@@ -38,7 +41,7 @@ export default function Topbar() {
                         </Link>
                     </div>
                 </div>
-                <Link to='/profile' className="links">
+                <Link to={`/profile/${user._id}`} className="links">
                     <img src="profile.jpg" alt="" className="pic" />
                 </Link>
                 <Link to='/login' className="links">

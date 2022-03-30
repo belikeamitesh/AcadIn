@@ -2,47 +2,9 @@ const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 
-//update user
-router.put("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
-    if (req.body.password) {
-      try {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
-      } catch (err) {
-        return res.status(500).json(err);
-      }
-    }
-    try {
-      const user = await User.findByIdAndUpdate(req.params.id, {
-        $set: req.body,
-      });
-      res.status(200).json("Account has been updated");
-    } catch (err) {
-      return res.status(500).json(err);
-    }
-  } else {
-    return res.status(403).json("You can update only your account!");
-  }
-});
-
-//delete user
-router.delete("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id) {
-    try {
-      await User.findByIdAndDelete(req.params.id);
-      res.status(200).json("Account has been deleted");
-    } catch (err) {
-      return res.status(500).json(err);
-    }
-  } else {
-    return res.status(403).json("You can delete only your account!");
-  }
-});
-
 //get a user
-router.get("/", async (req, res) => {
-  const userId = req.query.userId;
+router.get("/:userId", async (req, res) => {
+  const userId = req.params.userId;
   const username = req.query.username;
   try {
     const user = userId
@@ -122,19 +84,21 @@ router.put("/:id/unfollow", async (req, res) => {
 router.put("/:id/updatebio", async(req, res) => {
   if(req.body.userId === req.params.id) {
     try {
-      await User.updateOne({_id:req.params.id}, {bio:req.body.bio});
-      res.status(200).json("Bio has been updated");
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  }
-});
-
-router.put("/:id/updateeducation", async(req, res) => {
-  if(req.body.userId === req.params.id) {
-    try {
-      await User.updateOne({_id:req.params.id}, {bio:req.body.education});
-      res.status(200).json("Bio has been updated");
+      const user = await User.findById(req.body.userId);
+      if(req.body.username !== "") {
+        user.username = req.body.username;
+      }
+      if(req.body.education !== "") {
+        user.education = req.body.education;
+      }
+      if(req.body.experience !== "") {
+        user.experience = req.body.experience;
+      }
+      if(req.body.bio !== "") {
+        user.bio = req.body.bio;
+      }
+      const updatedUser = await user.save();
+      res.status(200).json(updatedUser);
     } catch (error) {
       res.status(500).json(error);
     }

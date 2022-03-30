@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/profile/:id" element={<Profile />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/notification" element={<Notification />}></Route>
         <Route path="/forum" element={<Forum />}></Route>
