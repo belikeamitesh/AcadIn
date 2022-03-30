@@ -2,6 +2,7 @@ import React from 'react'
 import "./rightbar.css"
 
 export default function Rightbar() {
+  const PF = process.env.PUBLIC_URL;
   return (
     <div className="rightbar">
        <div className="rightbarWrapper">
@@ -9,7 +10,7 @@ export default function Rightbar() {
          <ul className="rightbarFriendList">
            <li className="rightbarFriend">
              <div className="rightbarProfileImgContainer">
-               <img className='rightbarProfileImg' src='assets/person/3.jpg' alt=""/>
+               <img className='rightbarProfileImg' alt=""/>
               <span className='rightbarOnline'></span> 
              </div>
              <span className="rightbarUsername">Aunik Kumar</span>
@@ -28,41 +29,8 @@ export default function Rightbar() {
              </div>
              <span className="rightbarUsername">Aunik Kumar</span>
            </li>
-           <li className="rightbarFriend">
-             <div className="rightbarProfileImgContainer">
-               <img className='rightbarProfileImg' src='assets/person/3.jpg' alt=""/>
-              <span className='rightbarOnline'></span> 
-             </div>
-             <span className="rightbarUsername">Aunik Kumar</span>
-           </li>
-           <li className="rightbarFriend">
-             <div className="rightbarProfileImgContainer">
-               <img className='rightbarProfileImg' src='assets/person/3.jpg' alt=""/>
-              <span className='rightbarOnline'></span> 
-             </div>
-             <span className="rightbarUsername">Aunik Kumar</span>
-           </li>
-           <li className="rightbarFriend">
-             <div className="rightbarProfileImgContainer">
-               <img className='rightbarProfileImg' src='assets/person/3.jpg' alt=""/>
-              <span className='rightbarOnline'></span> 
-             </div>
-             <span className="rightbarUsername">Aunik Kumar</span>
-           </li>
-           <li className="rightbarFriend">
-             <div className="rightbarProfileImgContainer">
-               <img className='rightbarProfileImg' src='assets/person/3.jpg' alt=""/>
-              <span className='rightbarOnline'></span> 
-             </div>
-             <span className="rightbarUsername">Aunik Kumar</span>
-           </li>
-           <li className="rightbarFriend">
-             <div className="rightbarProfileImgContainer">
-               <img className='rightbarProfileImg' src='assets/person/3.jpg' alt=""/>
-              <span className='rightbarOnline'></span> 
-             </div>
-             <span className="rightbarUsername">Aunik Kumar</span>
-           </li>
+           
+          
          </ul>
        </div>
     </div>

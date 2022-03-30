@@ -3,7 +3,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
-import Chat from "./pages/Chat/Chat";
+import Chat from "./pages/Chat2/Chat2";
 import Notification from "./pages/Notification/Notification";
 import Forum from "./pages/Forum/Forum";
 import Search from "./pages/Search/Search";
