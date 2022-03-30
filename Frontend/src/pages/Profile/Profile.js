@@ -10,10 +10,12 @@ import Button from '@material-ui/core/Button';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Feed from "../../component/feed/Feed";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Profile() {
     const [open, setOpen] = useState(false);
     const [user, setUser] = useState({});
+    const {user:currentUser, dispatch} = useContext(AuthContext);
     const {id} = useParams();
     const username = createRef();
     const bio = createRef();
@@ -41,10 +43,11 @@ export default function Profile() {
         console.log(bio.current.value);
         console.log(education.current.value);
         console.log(experience.current.value);
-        const body = {userId:id, username, bio, education, experience};
+        console.log(id, currentUser._id)
+        const body = {userId:currentUser._id, username:username.current.value, bio:bio.current.value, education:education.current.value, experience:experience.current.value};
         const res = await axios.put(`http://localhost:5000/user/${id}/updatebio`, body );
         console.log(res.data);
-        // setUser(res.data);
+        setUser(res.data);
         // user = await axios.get(`http://localhost:5000/user/${user._id}`);
     }
 
@@ -64,7 +67,7 @@ export default function Profile() {
                             <i class="fa-solid fa-camera"></i>
                         </button>
                     </div>
-                    <h4 className={styles.username}>THOR : GOD OF THUNDER</h4>
+                    <h4 className={styles.username}>{user.username}</h4>
                     <span className={styles.bio}> {user.bio} </span>
                     {/* Remove edituderprofile for friend's profile */}
                     <span className={styles.edituserprofile} onClick={handleClickOpen}>
@@ -133,10 +136,10 @@ export default function Profile() {
                             <div className={styles.division}>
                                 <div className={styles.content}>
                                     <h3 className={styles.heading}>Education</h3>
-                                    <span className={styles.value}> Learned From Asgard was not that easy for me </span>
+                                    <span className={styles.value}> {user.education} </span>
                                     <hr></hr>
                                     <h3 className={styles.heading}>Experience</h3>
-                                    <span className={styles.value}> Worked under Captain America in the Team of Avengers </span>
+                                    <span className={styles.value}> {user.experience} </span>
                                     <hr></hr>
                                     <h3 className={styles.heading}>About</h3>
                                     <span className={styles.value}>Keep or Discard this field as per your planning </span>
