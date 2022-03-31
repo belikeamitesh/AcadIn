@@ -18,6 +18,9 @@ export default function Profile() {
     const [user, setUser] = useState({});
     const {user:currentUser, dispatch} = useContext(AuthContext);
     const {id} = useParams();
+    const [followed, setFollowed] = useState(currentUser.followings.includes(id));
+    const [followings, setFollowings] = useState([]);
+
     const username = createRef();
     const bio = createRef();
     const education = createRef();
@@ -36,8 +39,11 @@ export default function Profile() {
         const res = await axios.get(`http://localhost:5000/user/${id}`);
         console.log(res.data);
         setUser(res.data);
-        console.log(user);
-    }, []);
+
+        const followingList = await axios.get(`http://localhost:5000/user/friends/${id}`);
+        console.log(followingList.data);
+        setFollowings(followingList.data);
+    }, [id]);
 
     const updateUser = async() => {
         console.log(username.current.value);
@@ -49,7 +55,18 @@ export default function Profile() {
         const res = await axios.put(`http://localhost:5000/user/${id}/updatebio`, body );
         console.log(res.data);
         setUser(res.data);
-        // user = await axios.get(`http://localhost:5000/user/${user._id}`);
+    }
+
+    const followUser =  async() => {
+        try {
+            const body = {userId:currentUser._id};
+            const res = await axios.put(`http://localhost:5000/user/${id}/follow`, body);
+            dispatch({ type: "FOLLOW", payload: id });
+            console.log(res);
+            setFollowed(!followed);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -71,10 +88,15 @@ export default function Profile() {
                     <h4 className={styles.username}>{user.username}</h4>
                     <span className={styles.bio}> {user.bio} </span>
                     {/* Remove edituderprofile for friend's profile */}
-                    <span className={styles.edituserprofile} onClick={handleClickOpen}>
-                        <i class="fa-solid fa-pen"></i>
-                        <span className={styles.space}>Edit profile</span>
-                    </span>
+                    {
+                        id === currentUser._id && (
+                            <span className={styles.edituserprofile} onClick={handleClickOpen}>
+                                <i class="fa-solid fa-pen"></i>
+                                <span className={styles.space}>Edit profile</span>
+                            </span>
+                        )
+                    }
+                    
                     <Dialog open={open} onClose={handleClose}>
                         <div className={styles.dialog}>
                             <DialogTitle >
@@ -116,19 +138,22 @@ export default function Profile() {
                     </Dialog>
                     {/* Remove addnew division for self profile */}
                     <div className={styles.addnew}>
-                        <span className={styles.addfriend}>
-                            <i class="fa-solid fa-user-plus"></i>
-                            <span className={styles.space}>Add Friend</span>
-                        </span>
-                        {/* Remove friend, if already a friend */}
-                        {/* <span className={styles.removefriend}>
-                            <i class="fa-solid fa-user-minus"></i>
-                            <span className={styles.space}>Remove Friend</span>
-                        </span> */}
-                       <Link to="/chat"> <span className={styles.textfriend}>
-                            <i class="fa-brands fa-facebook-messenger"></i>
-                            <span className={styles.space}>Message</span>
-                        </span></Link>
+                        {
+                            id !== currentUser._id && (
+                                <>
+                                <span className={styles.addfriend}>
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <span className={styles.space} onClick={followUser}>Follow</span>
+                                </span>
+                                <Link to="/chat"> 
+                                    <span className={styles.textfriend}>
+                                        <i class="fa-brands fa-facebook-messenger"></i>
+                                        <span className={styles.space}>Message</span>
+                                    </span>
+                                </Link>
+                                </>
+                            )
+                        }
                     </div>
                 </div>
                 <div className={styles.about}>
@@ -148,28 +173,16 @@ export default function Profile() {
                             </div>
                             <div className={styles.division}>
                                 <div className={styles.content}>
-                                    <h3 className={styles.friend}>Friends</h3>
+                                    <h3 className={styles.friend}>People I Follow</h3>
                                     <div className={styles.friendflex}>
-                                        <div className={styles.friendlist}>
-                                            <img src="1.jpg" alt="" className="pic" />
-                                            <span className={styles.friendname}>Ankit Singh</span>
-                                        </div>
-                                        <div className={styles.friendlist}>
-                                            <img src="blank.jpg" alt="" className="pic" />
-                                            <span className={styles.friendname}>Ananya</span>
-                                        </div>
-                                        <div className={styles.friendlist}>
-                                            <img src="blank.jpg" alt="" className="pic" />
-                                            <span className={styles.friendname}>Amartya</span>
-                                        </div>
-                                        <div className={styles.friendlist}>
-                                            <img src="blank.jpg" alt="" className="pic" />
-                                            <span className={styles.friendname}>Amitesh</span>
-                                        </div>
-                                        <div className={styles.friendlist}>
-                                            <img src="blank.jpg" alt="" className="pic" />
-                                            <span className={styles.friendname}>Unknown</span>
-                                        </div>
+                                        {
+                                            followings.map((friend) => 
+                                            <div className={styles.friendlist}>
+                                                <img src="blank.jpg" alt="" className="pic" />
+                                                <Link to={`/profile/${friend._id}`} style={{color:"white"}}><span className={styles.friendname}>{friend.username}</span></Link>
+                                            </div>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>

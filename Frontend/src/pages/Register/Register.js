@@ -42,6 +42,7 @@ export default function Register() {
             <div className={styles.registerbox}>
                 <div className={styles.box}>
                     <span className={styles.regis}>Sign Up</span>
+                    <input placeholder="Name" className={styles.registerInput} required />
                     <input placeholder="Email" className={styles.registerInput} required ref={email} />
                     <div className={styles.registerInput}>
                         <input type={Shown ? "text" : "password"} placeholder="Password" className={styles.pass} required ref={password} />
