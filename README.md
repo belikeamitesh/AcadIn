@@ -21,14 +21,14 @@ A social media platform for students of IIITG to share their achievements/Guidan
     </td>
     <td align="center">
         <a href="https://github.com/ankit-1431">
-            <img src="https://avatars.githubusercontent.com/u/43892979?v=4" width="100;" alt="ankit"/>
+            <img src="https://avatars.githubusercontent.com/u/56259046?v=4" width="100;" alt="ankit"/>
             <br />
             <sub><b>Ankit Singh</b></sub>
         </a>
     </td>
      <td align="center">
-        <a href="https://github.com/ankit-1431">
-            <img src="https://avatars.githubusercontent.com/u/43892979?v=4" width="100;" alt="ananya"/>
+        <a href="https://github.com/ananya182001">
+            <img src="https://avatars.githubusercontent.com/u/54628138?v=4" width="100;" alt="ananya"/>
             <br />
             <sub><b>Ananya Bhushan</b></sub>
         </a>
