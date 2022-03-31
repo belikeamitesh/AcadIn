@@ -16,7 +16,7 @@ export default function Share() {
   const PF = process.env.PUBLIC_URL;
   const desc = useRef();
   const [file, setFile] = useState(null);
-
+  const [posts,setPosts] = useState([]);
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {

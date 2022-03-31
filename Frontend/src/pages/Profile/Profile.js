@@ -22,7 +22,7 @@ export default function Profile() {
     const bio = createRef();
     const education = createRef();
     const experience = createRef();
-
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -59,11 +59,15 @@ export default function Profile() {
             <div className={styles.profile}>
                 <div className={styles.info}>
                     <div className={styles.cover}>
-                        <img src="cover.jpg" alt="" className={styles.coverpic} />
+                        <img src={user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "Person/noAvatar.png"} alt="" className={styles.coverpic} />
                         <button className={styles.editcover}>
                             <i class="fa-solid fa-camera"></i>
                         </button>
-                        <img src="profile.jpg" alt="" className={styles.profilepic} />
+                        <img src={user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "Person/noAvatar.png"} alt="" className={styles.profilepic} />
                         <button className={styles.editprofile}>
                             <i class="fa-solid fa-camera"></i>
                         </button>
