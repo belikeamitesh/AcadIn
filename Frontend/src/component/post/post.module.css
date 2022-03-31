@@ -43,6 +43,11 @@
     display: flex;
     flex-direction: column;
 }
+.likeIcon
+{
+  width:30px;
+  height:30px;
+}
 
 
 .postImg{

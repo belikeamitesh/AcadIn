@@ -42,7 +42,9 @@ const storage = multer.diskStorage({
           console.error(error);
         }
 });
-
+app.get("/image.png", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/images/1648699165442Snap city.png"));
+});
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/posts', postRoutes);

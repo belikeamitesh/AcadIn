@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Feed({username}) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
-
+  const PF=process.env.PUBLIC_URL
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username

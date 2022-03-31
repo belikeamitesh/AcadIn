@@ -13,7 +13,7 @@ export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const PF = process.env.PUBLIC_URL;
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
   const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`http://localhost:5000/user?userId=${post.userId}`);
+      const res = await axios.get(`http://localhost:5000/user/${post.userId}`);
       setUser(res.data);
     };
     fetchUser();
@@ -30,7 +30,7 @@ export default function Post({ post }) {
 
   const likeHandler = () => {
     try {
-      axios.put("http://localhost:5000/posts/" + post._id + "http://localhost:5000/like", { userId: currentUser._id });
+      axios.put("http://localhost:5000/posts/" + post._id + "/like", { userId: currentUser._id });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
@@ -46,7 +46,7 @@ export default function Post({ post }) {
                 src={
                   user.profilePicture
                     ? PF + user.profilePicture
-                    : PF + "Person/noAvatar.png"
+                    : PF + "noAvatar.png"
                 }
                 alt=""
               />
@@ -66,13 +66,7 @@ export default function Post({ post }) {
           <div className={style.postBottomLeft}>
             <img
               className={style.likeIcon}
-              src={like}
-              onClick={likeHandler}
-              alt=""
-            />
-            <img
-              className={style.likeIcon}
-              src={heart}
+              src={`${PF}like.png`}
               onClick={likeHandler}
               alt=""
             />
