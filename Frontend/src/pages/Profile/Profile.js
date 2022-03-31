@@ -61,13 +61,13 @@ export default function Profile() {
                     <div className={styles.cover}>
                         <img src={user.profilePicture
                     ? PF + user.profilePicture
-                    : PF + "Person/noAvatar.png"} alt="" className={styles.coverpic} />
+                    : PF + "noCover.png"} alt="" className={styles.coverpic} />
                         <button className={styles.editcover}>
                             <i class="fa-solid fa-camera"></i>
                         </button>
                         <img src={user.profilePicture
                     ? PF + user.profilePicture
-                    : PF + "Person/noAvatar.png"} alt="" className={styles.profilepic} />
+                    : PF + "noAvatar.png"} alt="" className={styles.profilepic} />
                         <button className={styles.editprofile}>
                             <i class="fa-solid fa-camera"></i>
                         </button>

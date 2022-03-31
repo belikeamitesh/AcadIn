@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext"
 
 export default function Topbar() {
     const {user} = useContext(AuthContext);
-    
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER
     return (
         <div className="topbar">
             <div className="left">
@@ -24,25 +24,27 @@ export default function Topbar() {
                     <div className="fonticon">
                         <Link to='/' className="links"> <i className="fa-solid fa-house-chimney"></i> </Link>
                     </div>
-                    <div className="fonticon">
+                    {/* <div className="fonticon">
                         <i className="fa-solid fa-user-plus"></i>
                         <span className="badge">1</span>
-                    </div>
+                    </div> */}
                     <div className="fonticon">
                         <Link to='/chat' className="links">
                             <i class="fa-solid fa-message"></i>
                             <span className="badge">2</span>
                         </Link>
                     </div>
-                    <div className="fonticon">
+                    {/* <div className="fonticon">
                         <Link to='/notification' className="links">
                             <i className="fa-solid fa-bell" aria-hidden="true"></i>
                             <span className="badge">1</span>
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
                 <Link to={`/profile/${user._id}`} className="links">
-                    <img src="profile.jpg" alt="" className="pic" />
+                    <img src={user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "noAvatar.png"} alt="" className="pic" />
                 </Link>
                 <Link to='/login' className="links">
                     <div className="logout">

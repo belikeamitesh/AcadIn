@@ -13,7 +13,7 @@ import axios from "axios";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
-  const PF = process.env.PUBLIC_URL;
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
   const [posts,setPosts] = useState([]);
@@ -49,7 +49,7 @@ export default function Share() {
             src={
               user.profilePicture
                 ? PF + user.profilePicture
-                : PF + "Person/noAvatar.png"
+                : PF + "noAvatar.png"
             }
             alt=""
           />
