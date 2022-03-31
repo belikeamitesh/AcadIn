@@ -7,6 +7,7 @@ import "./home.css"
 
 export default function Home() {
     return (
+        document.body.style.backgroundColor = "white",
         <div className="home">
             <Topbar />
             <div className="homeContainer">

@@ -1,7 +1,7 @@
 .topbar{
     height: 60px;
     width: 100%;
-    background-color:blueviolet;
+    background-color: #1877f2;
     display: flex;
     align-items: center;
     position: sticky;
