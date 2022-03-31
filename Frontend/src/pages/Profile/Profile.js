@@ -182,7 +182,9 @@ export default function Profile() {
                                         {
                                             followings.map((friend) => 
                                             <div className={styles.friendlist}>
-                                                <img src="blank.jpg" alt="" className="pic" />
+                                                <img src={user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "noAvatar.png"} alt="" className="pic" />
                                                 <Link to={`/profile/${friend._id}`} style={{color:"white"}}><span className={styles.friendname}>{friend.username}</span></Link>
                                             </div>
                                             )

@@ -30,7 +30,7 @@ export default function Topbar() {
                     </div> */}
                     <div className="fonticon">
                         <Link to='/chat' className="links">
-                            <i class="fa-solid fa-message"></i>
+                            <i className="fa-solid fa-message"></i>
                             <span className="badge">2</span>
                         </Link>
                     </div>
@@ -49,7 +49,7 @@ export default function Topbar() {
                 <Link to='/login' className="links">
                     <div className="logout">
                         <span className="logoutbutton"> Logout </span>
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <i className="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </Link>
             </div>
