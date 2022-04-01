@@ -1,6 +1,5 @@
 const User = require("../models/User");
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
 
 //get a user
 router.get("/:userId", async (req, res) => {
