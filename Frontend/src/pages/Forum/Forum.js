@@ -1,8 +1,21 @@
 import React from "react"
 import styles from "./Forum.module.css";
 import Topbar from "../../component/Topbar";
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 
 export default function Forum() {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         document.body.style.backgroundColor = "rgb(17, 16, 16)",
         < div className={styles.page} >
@@ -27,6 +40,31 @@ export default function Forum() {
                             </div>
                         </div>
                     </div>
+                    <div className={styles.addforum} onClick={handleClickOpen}>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <Dialog open={open} onClose={handleClose}>
+                        <div className={styles.dialog}>
+                            <DialogTitle >
+                                <div className={styles.dialogtitle}>
+                                    <span className={styles.dialogtit}>Create New Forum</span>
+                                </div>
+                                <hr></hr>
+                            </DialogTitle>
+                            <DialogContent>
+                                <div className={styles.dialogbody}>
+                                    <span className={styles.dialogtext}>Forum Title</span>
+                                    <input placeholder="Enter your text here" className={styles.dialoginput} />
+                                </div>
+                            </DialogContent>
+                            <DialogActions>
+                                <div className={styles.dialogclose} onClick={handleClose}>
+                                    <span className={styles.dialogcancel}> Cancel </span>
+                                    <span className={styles.dialogsave}> Create Forum </span>
+                                </div>
+                            </DialogActions>
+                        </div>
+                    </Dialog>
                 </div>
                 <div className={styles.right}>
                     <div className={styles.top}>
