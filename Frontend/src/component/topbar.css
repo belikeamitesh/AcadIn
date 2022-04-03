@@ -1,4 +1,4 @@
-.topbar{
+.topbar {
     height: 60px;
     width: 100%;
     background-color: #1877f2;
@@ -9,29 +9,34 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(240, 221, 221);
 }
-.logo{
+
+.logo {
     font-size: 24px;
     margin-left: 50px;
     font-weight: bold;
     color: white;
     cursor: pointer;
 }
-.searchicon{
+
+.searchicon {
     margin-left: 16px;
     font-size: 20px;
     cursor: pointer;
     color: black;
 }
-.searchinput{
+
+.searchinput {
     font-size: 16px;
     border: none;
     width: 70%;
     margin-left: 30px;
 }
-.searchinput:focus{ 
+
+.searchinput:focus {
     outline: none;
 }
-.search{
+
+.search {
     width: 100%;
     height: 30px;
     background-color: white;
@@ -39,31 +44,37 @@
     display: flex;
     align-items: center;
 }
-.left{
+
+.left {
     flex: 3;
 }
-.center{
+
+.center {
     flex: 4;
 }
-.right{
+
+.right {
     flex: 5;
     display: flex;
     align-items: center;
     color: white;
     justify-content: space-evenly;
 }
-.topbaricons{
+
+.topbaricons {
     display: flex;
     position: relative;
 }
-.fonticon{
+
+.fonticon {
     width: 46px;
     font-size: 22px;
     margin-left: 32px;
     margin-top: 6px;
     cursor: pointer;
 }
-.badge{
+
+.badge {
     width: 15px;
     height: 15px;
     background-color: red;
@@ -71,21 +82,23 @@
     color: white;
     top: -5px;
     right: -5px;
-    font-weight:bold;
+    font-weight: bold;
     font-size: 14px;
-    display:inline-flex;
+    display: inline-flex;
     margin-left: 3px;
     align-items: center;
     justify-content: center;
 }
-.pic{
+
+.pic {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
 }
-.logout{
+
+.logout {
     width: auto;
     border-style: solid;
     border-color: rgb(16, 16, 177);
@@ -97,11 +110,17 @@
     cursor: pointer;
     border-radius: 10px;
 }
-.logoutbutton{
+
+.logoutbutton {
     padding-right: 2px;
     font-weight: bold;
 }
-.links{
+
+.links {
     text-decoration: none;
     color: white;
+}
+
+.logoforum {
+    font-size: 26px;
 }
