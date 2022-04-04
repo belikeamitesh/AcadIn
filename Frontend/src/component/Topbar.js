@@ -1,11 +1,21 @@
 import React, { useContext } from "react"
 import "./topbar.css"
 import { Link } from "react-router-dom"
-import { AuthContext } from "../context/AuthContext"
+import { AuthContext } from "../context/AuthContext";
+import Menu from "@material-ui/core/Menu";
 
 export default function Topbar() {
     const { user } = useContext(AuthContext);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
     return (
         <div className="topbar">
             <div className="left">
@@ -13,11 +23,32 @@ export default function Topbar() {
             </div>
             <div className="center">
                 <div className="search">
-                    <div className="searchicon">
+                    <div className="searchicon" onClick={handleClick}>
                         <i className="fa fa-search"></i>
                     </div>
-                    <input placeholder="Search Here" className="searchinput"></input>
+                    <input placeholder="Search for friends" className="searchinput"></input>
                 </div>
+                <Menu anchorEl={anchorEl} onClose={handleClose} open={Boolean(anchorEl)} className="menu">
+                    <div className="menuitem">
+                        {/* <span className="notfound">No Results Found </span> */}
+                        <div className="friendlists">
+                            <img src="1.jpg" alt="" className="pic" />
+                            <span className="friendname">Ankit Singh</span>
+                        </div>
+                        <div className="friendlists">
+                            <img src="1.jpg" alt="" className="pic" />
+                            <span className="friendname">Ankit Singh</span>
+                        </div>
+                        <div className="friendlists">
+                            <img src="1.jpg" alt="" className="pic" />
+                            <span className="friendname">Ankit Singh</span>
+                        </div>
+                        <div className="friendlists">
+                            <img src="1.jpg" alt="" className="pic" />
+                            <span className="friendname">Ankit Singh</span>
+                        </div>
+                    </div>
+                </Menu>
             </div>
             <div className="right">
                 <div className="topbaricons">

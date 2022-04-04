@@ -37,7 +37,7 @@
 }
 
 .search {
-    width: 100%;
+    width: 90%;
     height: 30px;
     background-color: white;
     border-radius: 30px;
@@ -123,4 +123,53 @@
 
 .logoforum {
     font-size: 26px;
+}
+
+.menu {
+    margin-top: 29px;
+    margin-left: 22px;
+    position: absolute;
+}
+
+.menuitem {
+    height: auto;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.friendlists {
+    height: auto;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.friendlists:hover {
+    background-color: rgb(237, 226, 226);
+}
+
+.pic {
+    margin-left: 16px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friendname {
+    font-size: 20px;
+    margin-top: 6px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    margin-left: 16px;
+}
+
+.notfound {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 500;
 }
