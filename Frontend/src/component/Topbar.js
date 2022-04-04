@@ -32,7 +32,7 @@ export default function Topbar() {
                     <div className="fonticon">
                         <Link to='/forum' className="links">
                             <div className="logoforum">
-                                <i class="fa-solid fa-users-viewfinder"></i>
+                                <i className="fa-solid fa-users-viewfinder"></i>
                             </div>
                         </Link>
                     </div>

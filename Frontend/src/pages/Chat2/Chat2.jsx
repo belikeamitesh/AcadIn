@@ -51,6 +51,7 @@ export default function Messenger() {
     const getConversations = async () => {
       try {
         const res = await axios.get("http://localhost:5000/conversations/" + user._id);
+        console.log(res);
         setConversations(res.data);
       } catch (err) {
         console.log(err);
@@ -59,10 +60,13 @@ export default function Messenger() {
     getConversations();
   }, [user._id]);
 
+  
+
   useEffect(() => {
     const getMessages = async () => {
       try {
         const res = await axios.get("http://localhost:5000/messages/" + currentChat._id);
+        // console.log(res.data);
         setMessages(res.data);
       } catch (err) {
         console.log(err);
@@ -71,6 +75,7 @@ export default function Messenger() {
     getMessages();
   }, [currentChat]);
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -91,6 +96,7 @@ export default function Messenger() {
 
     try {
       const res = await axios.post("http://localhost:5000/messages", message);
+      // console.log(res.data);
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
@@ -110,7 +116,7 @@ export default function Messenger() {
           <div className={style.chatMenuWrapper}>
             <input placeholder="Search for friends" className={style.chatMenuInput} />
             {conversations.map((c) => (
-              <div onClick={() => setCurrentChat(c)}>
+              <div key={conversations._id} onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUser={user} />
               </div>
             ))}
@@ -122,7 +128,7 @@ export default function Messenger() {
               <>
                 <div className={style.chatBoxTop}>
                   {messages.map((m) => (
-                    <div >
+                    <div key={messages._id}>
                       <Message message={m} own={m.sender === user._id} />
                     </div>
                   ))}
