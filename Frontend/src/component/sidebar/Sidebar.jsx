@@ -14,10 +14,10 @@ export default function Sidebar(){
             <Chat className="sidebarIcon" />
             <span className="sidebarListItemText">Chats</span>
           </li></Link> 
-          <li className="sidebarListItem">
+          <Link to="/forum">  <li className="sidebarListItem">
             <Group className="sidebarIcon" />
             <span className="sidebarListItemText">Active Forums</span>
-          </li>
+          </li></Link>
         </ul>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">

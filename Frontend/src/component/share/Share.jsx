@@ -11,17 +11,20 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 
-export default function Share() {
+export default function Share(props) {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const desc = useRef();
+  // const desc = useRef();
+  const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
-  const [posts,setPosts] = useState([]);
+  const descChangeHandler = (e) => {
+    setDesc(e.target.value);
+  }
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
-      desc: desc.current.value,
+      desc
     };
     if (file) {
       const data = new FormData();
@@ -36,7 +39,9 @@ export default function Share() {
     }
     try {
       await axios.post("http://localhost:5000/posts", newPost);
-      window.location.reload();
+      // window.location.reload();
+      setDesc("");
+      props.onSubmit();
     } catch (err) {}
   };
 
@@ -56,7 +61,8 @@ export default function Share() {
           <input
             placeholder="Achievements or Guidance?"
             className="shareInput"
-            ref={desc}
+            value={desc}
+            onChange={descChangeHandler}
           />
         </div>
         <hr className="shareHr"/>

@@ -60,12 +60,23 @@ export default function Profile() {
     const followUser =  async() => {
         try {
             const body = {userId:currentUser._id};
-            const res = await axios.put(`http://localhost:5000/user/${id}/follow`, body);
-            dispatch({ type: "FOLLOW", payload: id });
-            console.log(res);
+            if(followed) {
+                const res = await axios.put(`http://localhost:5000/user/${id}/unfollow`, body);
+                if(res.status === 200)
+                    dispatch({ type: "UNFOLLOW", payload: id });
+                console.log(res);
+            } else {
+                const res = await axios.put(`http://localhost:5000/user/${id}/follow`, body);
+                if(res.status === 200)
+                    dispatch({type:"FOLLOW", payload: id});
+                console.log(res);
+            }
             setFollowed(!followed);
         } catch (error) {
-            console.error(error);
+            if(error.response)
+                console.error(error.response.data);
+            else
+                console.error(error);
         }
     }
 
@@ -127,10 +138,10 @@ export default function Profile() {
                                     <span className={styles.dialogtext}>Experience </span>
                                     <input placeholder="Enter your Experience" className={styles.dialoginput} ref={experience} />
                                 </div>
-                                <div className={styles.dialogbody}>
+                                {/* <div className={styles.dialogbody}>
                                     <span className={styles.dialogtext}>About </span>
                                     <input placeholder="Enter about you" className={styles.dialoginput} />
-                                </div>
+                                </div> */}
                             </DialogContent>
                             <DialogActions>
                                 <div className={styles.dialogclose} onClick={handleClose}>
@@ -147,7 +158,7 @@ export default function Profile() {
                                 <>
                                 <span className={styles.addfriend}>
                                     <i class="fa-solid fa-user-plus"></i>
-                                    <span className={styles.space} onClick={followUser}>Follow</span>
+                                    <span className={styles.space} onClick={followUser}>{followed?"UnFollow":"Follow"}</span>
                                 </span>
                                 <Link to="/chat"> 
                                     <span className={styles.textfriend}>
@@ -171,13 +182,13 @@ export default function Profile() {
                                     <h3 className={styles.heading}>Experience</h3>
                                     <span className={styles.value}> {user.experience} </span>
                                     <hr></hr>
-                                    <h3 className={styles.heading}>About</h3>
-                                    <span className={styles.value}>Keep or Discard this field as per your planning </span>
+                                    {/* <h3 className={styles.heading}>About</h3>
+                                    <span className={styles.value}>Keep or Discard this field as per your planning </span> */}
                                 </div>
                             </div>
                             <div className={styles.division}>
                                 <div className={styles.content}>
-                                    <h3 className={styles.friend}>People I Follow</h3>
+                                    <h3 className={styles.friend}>Following</h3>
                                     <div className={styles.friendflex}>
                                         {
                                             followings.map((friend) => 
