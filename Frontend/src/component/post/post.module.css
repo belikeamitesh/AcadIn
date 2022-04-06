@@ -134,3 +134,24 @@
 }
 
 img { max-width: 100%; height: auto; }
+
+.post_form {
+  display: flex;
+  margin-top: 20px;
+}
+
+.post_input {
+  flex: 1;
+}
+
+.comment_button {
+  border-radius: 12px;
+  padding: 10px 24px;
+  background-color: #008CBA;
+}
+
+/*Comment section*/
+
+.comments{
+  margin-top: 5%;
+}

@@ -1,4 +1,3 @@
-
 import { MoreVert } from "@material-ui/icons";
 import React,{ useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -8,13 +7,27 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import {like} from "../../like.png";
 import {heart} from "../../heart.png";
+import Comments from "../Comments.js"
+import { Button, TextField } from "@material-ui/core";
+import SendIcon from '@material-ui/icons/Send';
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+  const [comment, setComment] = useState(false);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   const { user: currentUser } = useContext(AuthContext);
+
+  // showAlert(()=> {
+  //   alert("I'm an alert");
+  // });
+  const App = () => { const number = 10; return ( <div> <p>Number: {number}</p> </div> ); };
+
+function element( ){
+ setComment(!comment)
+ console.log('hello comment')
+};
 
   useEffect(() => {
     setIsLiked(post.likes.includes(currentUser._id));
@@ -35,7 +48,12 @@ export default function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
+
+  
+
+
   return (
+    <div>
     <div className={style.post}>
       <div className={style.postWrapper}>
         <div className={style.postTop}>
@@ -73,10 +91,39 @@ export default function Post({ post }) {
             <span className={style.postLikeCounter}>{like} people like it</span>
           </div>
           <div className={style.postBottomRight}>
-            <span className={style.postCommentText}>{post.comment} comments</span>
+            <span className={style.postCommentText}>{post.comment}</span>
+            <button style={{border:'none',padding:"10px",borderRadius:'5px',backgroundColor:'aliceblue'}} className="comment_button" onClick = {element}> comments</button>
+            <div onClick={() => setComment(!comment)}>
+          
+          </div>   
           </div>
         </div>
+        {comment ?
+            <div className="comments" style={{marginTop:'5%'}}>
+              <form className="post_form">
+                <TextField
+                   label = "Add comment"
+                   size="small"
+                   variant="outlined"
+                   className="post_input"
+                   placeholder="Add comment"
+                   style={{width:'70%'}}
+                />
+                <Button
+                 variant="contained"
+                 size="small"
+                 endIcon={<SendIcon/>}
+                 style={{marginLeft:'5%',padding:'8px',backgroundColor:'#ff6347',color:'white'}}
+                >
+                  Send
+                </Button>
+              </form> 
+               <Comments /> 
+            </div>: <div>
+            </div>
+          } 
       </div>
     </div>
-  );
+</div>
+);
 }
