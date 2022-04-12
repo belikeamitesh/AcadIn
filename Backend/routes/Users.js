@@ -1,18 +1,15 @@
 const User = require("../models/User");
 const router = require("express").Router();
-
-//get a user
-router.get("/:userId", async (req, res) => {
-  const userId = req.params.userId;
+// search a user
+router.get("/search", async(req, res) => {
   const username = req.query.username;
+  // console.log(username);
+  // const regex = new RegExp(username, 'i');
   try {
-    const user = userId
-      ? await User.findById(userId)
-      : await User.findOne({ username: username });
-    const { password, updatedAt, ...other } = user._doc;
-    res.status(200).json(other);
-  } catch (err) {
-    res.status(500).json(err);
+    const response = await User.find({"username":{$regex:username, $options:"i"}});
+    return res.json(response);  
+  } catch (error) {
+    return res.status(500).json(error);
   }
 });
 
@@ -37,7 +34,6 @@ router.get("/friends/:userId", async (req, res) => {
 });
 
 //follow a user
-
 router.put("/:id/follow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
@@ -59,7 +55,6 @@ router.put("/:id/follow", async (req, res) => {
 });
 
 //unfollow a user
-
 router.put("/:id/unfollow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
@@ -101,6 +96,20 @@ router.put("/:id/updatebio", async(req, res) => {
     } catch (error) {
       res.status(500).json(error);
     }
+  }
+});
+//get a user
+router.get("/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const username = req.query.username;
+  try {
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
+    const { password, updatedAt, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

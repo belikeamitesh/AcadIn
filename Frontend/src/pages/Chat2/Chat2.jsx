@@ -1,9 +1,9 @@
-
 import Topbar from "../../component/Topbar.js";
 import Conversation from "../../component/conversation/Conversation";
 import Message from "../../component/message/Message";
 import ChatOnline from "../../component/chatOnline/ChatOnline";
 import React,{ useContext, useEffect, useRef, useState } from "react";
+import Dialog from '@material-ui/core/Dialog';
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { io } from "socket.io-client";
@@ -16,9 +16,20 @@ export default function Messenger() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [followings, setFollowings] = useState([]);
   const socket = useRef();
   const { user } = useContext(AuthContext);
   const scrollRef = useRef();
+
+  const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        console.log(followings);
+        setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
 
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
@@ -57,7 +68,17 @@ export default function Messenger() {
         console.log(err);
       }
     };
+    const getFriends = async () => {
+      try {
+        const followingList = await axios.get(`http://localhost:5000/user/friends/${user._id}`);
+        console.log(followingList.data);
+        setFollowings(followingList.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     getConversations();
+    getFriends();
   }, [user._id]);
 
   
@@ -103,7 +124,19 @@ export default function Messenger() {
       console.log(err);
     }
   };
-
+  const addConversation = async(id) => {
+    const body = {
+      senderId: user._id,
+      receiverId: id
+    }
+    try {
+      const res = await axios.post("http://localhost:5000/conversations", body);
+      setConversations([...conversations, res.data]);
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   // useEffect(() => {
   //   scrollRef.current.scrollIntoView({ behavior: "smooth" });
   // }, [messages]);
@@ -120,6 +153,74 @@ export default function Messenger() {
                 <Conversation conversation={c} currentUser={user} />
               </div>
             ))}
+            <div className={style.addfriendstochat} onClick={handleClickOpen}>
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <Dialog open={open} onClose={handleClose}>
+              {/* Search Bar + list of current friends and modify this list as per search and print no user found accordingly */}
+              <div className={style.dialog}>
+                <div className={style.searchspace}>
+                  <div className={style.search}>
+                    <div className={style.searchbox}>
+                      <input placeholder="Search friend" className={style.searchinput}></input>
+                      <div className={style.searchicon}>
+                        <i className="fa fa-search"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <hr></hr>
+                </div>
+                <div className={style.dialoglist}>
+                {/* <span className={style.nofound}> No User Found </span> */}
+                {
+                  followings.map((friend) => 
+                  <div className={style.friendlists} key={friend._id}>
+                    <img src="blank.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname} onClick={()=> addConversation(friend._id)}>{friend.username}</span>
+                    </div>
+                  </div>
+                  )
+                }
+                  {/* <div className={style.friendlists}>
+                    <img src="1.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname}>Ankit Singh</span>
+                    </div>
+                  </div>
+                  <div className={style.friendlists}>
+                    <img src="2.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname}>Ankith Reddy</span>
+                    </div>
+                  </div>
+                  <div className={style.friendlists}>
+                    <img src="blank.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname}>Ananya</span>
+                    </div>
+                  </div>
+                  <div className={style.friendlists}>
+                    <img src="1.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname}>Ankit Singh</span>
+                    </div>
+                  </div>
+                  <div className={style.friendlists}>
+                    <img src="2.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname}>Ankith Reddy</span>
+                    </div>
+                  </div>
+                  <div className={style.friendlists}>
+                    <img src="blank.jpg" alt="" className={style.pic} />
+                    <div className={style.chattab}>
+                      <span className={style.friendname}>Ananya</span>
+                    </div>
+                  </div> */}
+                </div>
+              </div>
+            </Dialog>
           </div>
         </div>
         <div className={style.chatBox}>

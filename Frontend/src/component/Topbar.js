@@ -1,19 +1,28 @@
-import React, { useContext } from "react"
+import React, { useState, useContext, createRef } from "react"
 import "./topbar.css"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext";
 import Menu from "@material-ui/core/Menu";
+import axios from "axios";
 
 export default function Topbar() {
     const { user } = useContext(AuthContext);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [users, setUsers] = useState([]);
+    const query = createRef();
+    
     const handleClose = () => {
         setAnchorEl(null);
     };
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+        axios.get(`http://localhost:5000/user/search?username=${query.current.value}`)
+        .then((res) => {
+            console.log(res.data);
+            setUsers(res.data);
+            setAnchorEl(event.target);
+        })
     };
 
     return (
@@ -26,27 +35,21 @@ export default function Topbar() {
                     <div className="searchicon" onClick={handleClick}>
                         <i className="fa fa-search"></i>
                     </div>
-                    <input placeholder="Search for friends" className="searchinput"></input>
+                    <input placeholder="Search for friends" className="searchinput" ref={query}></input>
                 </div>
                 <Menu anchorEl={anchorEl} onClose={handleClose} open={Boolean(anchorEl)} className="menu">
                     <div className="menuitem">
-                        {/* <span className="notfound">No Results Found </span> */}
-                        <div className="friendlists">
-                            <img src="1.jpg" alt="" className="pic" />
-                            <span className="friendname">Ankit Singh</span>
-                        </div>
-                        <div className="friendlists">
-                            <img src="1.jpg" alt="" className="pic" />
-                            <span className="friendname">Ankit Singh</span>
-                        </div>
-                        <div className="friendlists">
-                            <img src="1.jpg" alt="" className="pic" />
-                            <span className="friendname">Ankit Singh</span>
-                        </div>
-                        <div className="friendlists">
-                            <img src="1.jpg" alt="" className="pic" />
-                            <span className="friendname">Ankit Singh</span>
-                        </div>
+                        {
+                            users.length === 0 ?
+                                <span className="notfound">No Results Found </span>
+                            :
+                                users.map(user => 
+                                    <div className="friendlists" key={user._id}>
+                                        <img src="1.jpg" alt="profile_pic" className="pic" />
+                                        <Link to={`/profile/${user._id}`} ><span className="friendname">{user.username}</span></Link>
+                                    </div>    
+                                )
+                        }
                     </div>
                 </Menu>
             </div>
