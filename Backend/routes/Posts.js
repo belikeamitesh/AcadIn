@@ -13,8 +13,24 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//update a post
 
+// Comment on a post
+router.put("/comment", async (req, res) => {
+  try {
+    const postId = req.body.postId;
+    const username = req.body.username;
+    const comment = req.body.comment;
+
+    const post = await Post.findById(postId);
+
+    await post.updateOne({ $push: { comments: {username, comment } }});
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).json(err);
+  }
+})
+
+//update a post
 router.put("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -45,8 +61,18 @@ router.put("/:id/like", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//get a post
 
+// get comments on a post
+router.get("/comment/:postId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+    res.json(post.comments);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
+//get a post
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);

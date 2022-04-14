@@ -11,11 +11,14 @@ import Comments from "../Comments.js"
 import { Button, TextField } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
 
-export default function Post({ post }) {
+export default function Post({ postId, post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const [comment, setComment] = useState(false);
+  const [commentData, setCommentData] = useState("");
+  const [commentList, setCommentList] = useState([]);
+
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   const { user: currentUser } = useContext(AuthContext);
 
@@ -38,7 +41,13 @@ function element( ){
       const res = await axios.get(`http://localhost:5000/user/${post.userId}`);
       setUser(res.data);
     };
+    const fetchComments = async () => {
+      const res = await axios.get(`http://localhost:5000/posts/comment/${postId}`);
+      // console.log(res.data);
+      setCommentList(res.data);
+    }
     fetchUser();
+    fetchComments();
   }, [post.userId]);
 
   const likeHandler = () => {
@@ -49,8 +58,24 @@ function element( ){
     setIsLiked(!isLiked);
   };
 
-  
-
+  const commentHandler = (e) => {
+    console.log(e.target.value);
+    setCommentData(e.target.value);
+  }  
+  const commentPost = async (id) => {
+    try {
+      const body = {
+        username: currentUser.username,
+        postId: id,
+        comment: commentData
+      }
+      await axios.put("http://localhost:5000/posts/comment", body);
+      setCommentList([...commentList, {username: currentUser.username, comment: commentData}]);
+      setCommentData("");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -108,17 +133,20 @@ function element( ){
                    className="post_input"
                    placeholder="Add comment"
                    style={{width:'70%'}}
+                   onChange={commentHandler}
+                   value={commentData}
                 />
                 <Button
                  variant="contained"
                  size="small"
                  endIcon={<SendIcon/>}
                  style={{marginLeft:'5%',padding:'8px',backgroundColor:'#ff6347',color:'white'}}
+                  onClick={() => commentPost(postId)}
                 >
                   Send
                 </Button>
               </form> 
-               <Comments /> 
+               <Comments comments={commentList} /> 
             </div>: <div>
             </div>
           } 
