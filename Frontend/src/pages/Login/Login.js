@@ -4,10 +4,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import Alert from '@mui/material/Alert';
 
 export default function Login() {
     const navigate = useNavigate();
     const [Shown, setShown] = useState(false);
+    const [invalidPass, setInvalidPass] = useState(false);
+    const [invalidUser, setInvalidUser] = useState(false);
     const togglePassword = () => {
         setShown(!Shown);
     };
@@ -25,6 +28,13 @@ export default function Login() {
             navigate('/');
         } catch (error) {
             console.error(error);
+            if(error.response)
+            {
+                if(error.response.status === 400)
+                    setInvalidPass(true);
+                else if(error.response.status === 404)
+                    setInvalidUser(true);
+            }
             dispatch({ type: "LOGIN_FAILURE", payload: error });
         }
 
@@ -41,6 +51,7 @@ export default function Login() {
                 <div className={styles.box}>
                     <span className={styles.log}>Login</span>
                     <input placeholder="Email" className={styles.loginInput} required ref={email} />
+                    {invalidUser && <Alert severity="error" onClose={() => setInvalidUser(false)}>User Doesn't Exist</Alert>}
                     <div className={styles.loginInput}>
                         <input type={Shown ? "text" : "password"} placeholder="Password" className={styles.pass} required ref={password} />
                         <i className="fa-solid fa-eye" onClick={togglePassword}></i>
@@ -49,6 +60,7 @@ export default function Login() {
                     <span className={styles.register}>New to AcadIn?
                         <Link to='/register' className={styles.regis}>Register Here</Link>
                     </span>
+                    {invalidPass && <Alert severity="error" onClose={() => setInvalidPass(false)}>Incorrect Password Entered</Alert>}
                 </div>
             </div>
         </div >

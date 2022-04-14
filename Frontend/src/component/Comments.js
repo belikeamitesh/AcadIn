@@ -44,30 +44,6 @@ export default function Comments({comments}) {
         </>
       )
     }
-    
-      {/* <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-           style={{fontWeight:'700 !important'}}
-          primary="username"
-       
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                this is a comment
-              </Typography>
-            </React.Fragment>
-          }
-        />
-        
-      </ListItem> */}
     </List>
   )
 }

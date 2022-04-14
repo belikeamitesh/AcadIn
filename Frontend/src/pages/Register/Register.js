@@ -4,10 +4,12 @@ import { useState } from "react"
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Alert from '@mui/material/Alert';
 
 export default function Register() {
     const navigate = useNavigate();
     const [Shown, setShown] = useState(false);
+    const [userExists, setUserExists] = useState(false);
     const togglePassword = () => {
         setShown(!Shown);
     };
@@ -27,7 +29,11 @@ export default function Register() {
             navigate("/login");
         } catch (error) {
             if(error.response)
+            {
+                if(error.response.status == 400)
+                    setUserExists(true);
                 console.log(error.response.data);
+            }
             else
                 console.error(error);
         }
@@ -44,6 +50,7 @@ export default function Register() {
                     <span className={styles.regis}>Sign Up</span>
                     <input placeholder="Name" className={styles.registerInput} required />
                     <input placeholder="Email" className={styles.registerInput} required ref={email} />
+                    {userExists && <Alert severity="error" onClose={() => setUserExists(false)}>User already exists</Alert>}
                     <div className={styles.registerInput}>
                         <input type={Shown ? "text" : "password"} placeholder="Password" className={styles.pass} required ref={password} />
                         <i className="fa-solid fa-eye" onClick={togglePassword}></i>
