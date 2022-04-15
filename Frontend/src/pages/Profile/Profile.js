@@ -20,6 +20,7 @@ export default function Profile() {
     const {id} = useParams();
     const [followed, setFollowed] = useState(currentUser.followings.includes(id));
     const [followings, setFollowings] = useState([]);
+    // const [file, setFile] = useState(null);
 
     const username = createRef();
     const bio = createRef();
@@ -44,6 +45,37 @@ export default function Profile() {
         console.log(followingList.data);
         setFollowings(followingList.data);
     }, [id]);
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        // setFile(e.target.files[0]);
+        // console.log("submit handler called")
+        console.log(e.target.files[0]);
+        const file = e.target.files[0];
+        if (file) {
+          const data = new FormData();
+          const fileName = Date.now() + file.name;
+          data.append("name", fileName);
+          data.append("file", file);
+        //   currentUser.profilePicture = fileName;
+        //   console.log(newPost);
+          try {
+            await axios.post("http://localhost:5000/upload", data);
+          } catch (err) {
+              console.log(err);
+          }
+        
+            try {
+                const body = {userId: currentUser._id, profilePicture: fileName}
+            const res = await axios.put("http://localhost:5000/user/updatePic", body);
+            setUser({...user, profilePicture:fileName});
+            console.log(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+      };
+    
 
     const updateUser = async() => {
         console.log(username.current.value);
@@ -95,7 +127,16 @@ export default function Profile() {
                     ? PF + user.profilePicture
                     : PF + "noAvatar.png"} alt="" className={styles.profilepic} />
                         <button className={styles.editprofile}>
+                        <label htmlFor="file" className="shareOption">
                             <i class="fa-solid fa-camera"></i>
+                            <input
+                            style={{ display: "none" }}
+                            type="file"
+                            id="file"
+                            accept=".png,.jpeg,.jpg"
+                            onChange={submitHandler}
+                            />
+                            </label>
                         </button>
                     </div>
                     <h4 className={styles.username}>{user.username}</h4>
@@ -191,8 +232,8 @@ export default function Profile() {
                                         {
                                             followings.map((friend) => 
                                             <div className={styles.friendlist}>
-                                                <img src={user.profilePicture
-                    ? PF + user.profilePicture
+                                                <img src={friend.profilePicture
+                    ? PF + friend.profilePicture
                     : PF + "noAvatar.png"} alt="" className="pic" />
                                                 <Link to={`/profile/${friend._id}`} style={{color:"white"}}><span className={styles.friendname}>{friend.username}</span></Link>
                                             </div>

@@ -32,7 +32,17 @@ router.get("/friends/:userId", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// update profile profilePicture
+router.put("/updatePic", async (req, res) => {
+  try {
+    const user = await User.findById(req.body.userId);
+    user.profilePicture = req.body.profilePicture;
+    await user.save();
+    res.json(user);
+  } catch (error) {
+    res.status(500).json(error);    
+  }
+})
 //follow a user
 router.put("/:id/follow", async (req, res) => {
   if (req.body.userId !== req.params.id) {
