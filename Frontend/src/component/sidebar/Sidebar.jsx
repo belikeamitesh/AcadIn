@@ -22,34 +22,7 @@ export default function Sidebar() {
           <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
           <span className="sidebarFriendName">Rakesh Roy</span>
           </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
-          <li className="sidebarFriend">
-          <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
-          <span className="sidebarFriendName">Rakesh Roy</span>
-          </li> */}
+          */}
 
         </ul>
       </div>

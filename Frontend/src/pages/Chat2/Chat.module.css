@@ -149,6 +149,7 @@
 .friendname{
   font-size: 20px;
   margin-left: 16px;
+  margin-right: 16px;
   max-width: 30ch;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -147,7 +147,7 @@ export default function Messenger() {
       <div className={style.messenger}>
         <div className={style.chatMenu}>
           <div className={style.chatMenuWrapper}>
-            <input placeholder="Search for friends" className={style.chatMenuInput} />
+            {/* <input placeholder="Search for friends" className={style.chatMenuInput} /> */}
             {conversations.map((c) => (
               <div key={conversations._id} onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUser={user} />
@@ -162,11 +162,13 @@ export default function Messenger() {
                 <div className={style.searchspace}>
                   <div className={style.search}>
                     <div className={style.searchbox}>
-                      <input placeholder="Search friend" className={style.searchinput}></input>
+                      {/* <input placeholder="Search friend" className={style.searchinput}></input>
                       <div className={style.searchicon}>
                         <i className="fa fa-search"></i>
-                      </div>
+                      </div> */}
+                      Add a friend to Chat
                     </div>
+                    {/* Add a friend to Chat */}
                   </div>
                   <hr></hr>
                 </div>
@@ -182,42 +184,6 @@ export default function Messenger() {
                   </div>
                   )
                 }
-                  {/* <div className={style.friendlists}>
-                    <img src="1.jpg" alt="" className={style.pic} />
-                    <div className={style.chattab}>
-                      <span className={style.friendname}>Ankit Singh</span>
-                    </div>
-                  </div>
-                  <div className={style.friendlists}>
-                    <img src="2.jpg" alt="" className={style.pic} />
-                    <div className={style.chattab}>
-                      <span className={style.friendname}>Ankith Reddy</span>
-                    </div>
-                  </div>
-                  <div className={style.friendlists}>
-                    <img src="blank.jpg" alt="" className={style.pic} />
-                    <div className={style.chattab}>
-                      <span className={style.friendname}>Ananya</span>
-                    </div>
-                  </div>
-                  <div className={style.friendlists}>
-                    <img src="1.jpg" alt="" className={style.pic} />
-                    <div className={style.chattab}>
-                      <span className={style.friendname}>Ankit Singh</span>
-                    </div>
-                  </div>
-                  <div className={style.friendlists}>
-                    <img src="2.jpg" alt="" className={style.pic} />
-                    <div className={style.chattab}>
-                      <span className={style.friendname}>Ankith Reddy</span>
-                    </div>
-                  </div>
-                  <div className={style.friendlists}>
-                    <img src="blank.jpg" alt="" className={style.pic} />
-                    <div className={style.chattab}>
-                      <span className={style.friendname}>Ananya</span>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </Dialog>
