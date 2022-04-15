@@ -14,12 +14,14 @@ export default function Register() {
         setShown(!Shown);
     };
     
+    const username = useRef();
     const email = useRef();
     const password = useRef();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         const user = {
+            username: username.current.value,
             email: email.current.value,
             password: password.current.value
         };
@@ -48,7 +50,7 @@ export default function Register() {
             <div className={styles.registerbox}>
                 <div className={styles.box}>
                     <span className={styles.regis}>Sign Up</span>
-                    <input placeholder="Name" className={styles.registerInput} required />
+                    <input placeholder="Name" className={styles.registerInput} required ref={username}/>
                     <input placeholder="Email" className={styles.registerInput} required ref={email} />
                     {userExists && <Alert severity="error" onClose={() => setUserExists(false)}>User already exists</Alert>}
                     <div className={styles.registerInput}>
