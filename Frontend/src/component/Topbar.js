@@ -63,13 +63,13 @@ export default function Topbar() {
                             <i className="fa-solid fa-message"></i>
                         </Link>
                     </div>
-                    <div className="fonticon">
+                    {/* <div className="fonticon">
                         <Link to='/forum' className="links">
                             <div className="logoforum">
                                 <i className="fa-solid fa-users-viewfinder"></i>
                             </div>
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
                 <Link to={`/profile/${user._id}`} className="links">
                     <img src={user.profilePicture

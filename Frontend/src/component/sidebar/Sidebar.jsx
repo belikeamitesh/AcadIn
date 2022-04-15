@@ -14,14 +14,11 @@ export default function Sidebar(){
             <Chat className="sidebarIcon" />
             <span className="sidebarListItemText">Chats</span>
           </li></Link> 
-          <Link to="/forum">  <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Active Forums</span>
-          </li></Link>
+         
         </ul>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
-          <li className="sidebarFriend">
+          {/* <li className="sidebarFriend">
           <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
           <span className="sidebarFriendName">Rakesh Roy</span>
           </li>
@@ -52,7 +49,7 @@ export default function Sidebar(){
           <li className="sidebarFriend">
           <img className="sidebarFriendImg" src = "/assets/person/2.jpeg" alt = ""/> 
           <span className="sidebarFriendName">Rakesh Roy</span>
-          </li>
+          </li> */}
           
        </ul>
      </div>

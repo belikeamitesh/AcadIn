@@ -8,8 +8,9 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 export default function Comments({comments}) {
-  console.log(typeof(comments));
-  console.log(comments);
+  // console.log(typeof(comments));
+  // console.log(comments);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
     {
@@ -17,7 +18,7 @@ export default function Comments({comments}) {
         <>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt="Remy Sharp" src={PF + "noAvatar.png"} />
           </ListItemAvatar>
           <ListItemText
             style={{fontWeight:'700 !important'}}
