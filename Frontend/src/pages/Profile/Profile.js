@@ -87,9 +87,7 @@ export default function Profile() {
             <div className={styles.profile}>
                 <div className={styles.info}>
                     <div className={styles.cover}>
-                        <img src={user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "noCover.png"} alt="" className={styles.coverpic} />
+                        <img src={PF + "noCover.png"} alt="" className={styles.coverpic} />
                         <button className={styles.editcover}>
                             <i class="fa-solid fa-camera"></i>
                         </button>
