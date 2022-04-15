@@ -30,7 +30,7 @@ A social media platform for students of IIITG to share their achievements/Guidan
         <a href="https://github.com/ananya182001">
             <img src="https://avatars.githubusercontent.com/u/54628138?v=4" width="100;" alt="ananya"/>
             <br />
-            <sub><b>Ananya Bhushan</b></sub>
+            <sub><b>Ananya</b></sub>
         </a>
     </td>
   </tr>
