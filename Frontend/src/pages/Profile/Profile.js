@@ -249,7 +249,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className={styles.post}>
-                            <Feed />
+                            <Feed username={user.username}/>
                         </div>
                     </div>
                 </div>
