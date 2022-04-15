@@ -45,7 +45,7 @@ export default function Topbar() {
                             :
                                 users.map(user => 
                                     <div className="friendlists" key={user._id}>
-                                        <img src="1.jpg" alt="profile_pic" className="pic" />
+                                        <img src={PF + "noAvatar.png"} alt="profile_pic" className="pic" />
                                         <Link to={`/profile/${user._id}`} ><span className="friendname">{user.username}</span></Link>
                                     </div>    
                                 )
