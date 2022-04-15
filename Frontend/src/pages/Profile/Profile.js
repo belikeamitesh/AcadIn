@@ -120,24 +120,29 @@ export default function Profile() {
                 <div className={styles.info}>
                     <div className={styles.cover}>
                         <img src={PF + "noCover.png"} alt="" className={styles.coverpic} />
-                        <button className={styles.editcover}>
+                        {/* <button className={styles.editcover}>
                             <i class="fa-solid fa-camera"></i>
-                        </button>
+                        </button> */}
                         <img src={user.profilePicture
                             ? PF + user.profilePicture
                             : PF + "noAvatar.png"} alt="" className={styles.profilepic} />
-                        <button className={styles.editprofile}>
-                        <label htmlFor="dp" className="shareOption">
-                            <i class="fa-solid fa-camera"></i>
-                            <input
-                            style={{ display: "none" }}
-                            type="file"
-                            id="dp"
-                            accept=".png,.jpeg,.jpg"
-                            onChange={submitHandler}
-                            />
-                            </label>
-                        </button>
+                        {
+                            id === currentUser._id && (
+                                <button className={styles.editprofile}>
+                                    <label htmlFor="dp" className="shareOption">
+                                        <i class="fa-solid fa-camera"></i>
+                                        <input
+                                        style={{ display: "none" }}
+                                        type="file"
+                                        id="dp"
+                                        accept=".png,.jpeg,.jpg"
+                                        onChange={submitHandler}
+                                        />
+                                    </label>
+                                </button>
+                            )
+                        }
+                        
                     </div>
                     <h4 className={styles.username}>{user.username}</h4>
                     <span className={styles.bio}> {user.bio} </span>
