@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, createRef} from "react"
+import React, { useState, useEffect, useContext, createRef } from "react"
 import styles from "./Profile.module.css";
 import Topbar from "../../component/Topbar";
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,13 +11,13 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Feed from "../../component/feed/Feed";
 import { AuthContext } from "../../context/AuthContext";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     const [open, setOpen] = useState(false);
     const [user, setUser] = useState({});
-    const {user:currentUser, dispatch} = useContext(AuthContext);
-    const {id} = useParams();
+    const { user: currentUser, dispatch } = useContext(AuthContext);
+    const { id } = useParams();
     const [followed, setFollowed] = useState(currentUser.followings.includes(id));
     const [followings, setFollowings] = useState([]);
     // const [file, setFile] = useState(null);
@@ -35,7 +35,7 @@ export default function Profile() {
         setOpen(false);
     };
 
-    useEffect(async()=>{
+    useEffect(async () => {
         if (!id) return;
         const res = await axios.get(`http://localhost:5000/user/${id}`);
         console.log(res.data);
@@ -53,59 +53,59 @@ export default function Profile() {
         console.log(e.target.files[0]);
         const file = e.target.files[0];
         if (file) {
-          const data = new FormData();
-          const fileName = Date.now() + file.name;
-          data.append("name", fileName);
-          data.append("file", file);
-        //   currentUser.profilePicture = fileName;
-        //   console.log(newPost);
-          try {
-            await axios.post("http://localhost:5000/upload", data);
-          } catch (err) {
-              console.log(err);
-          }
-        
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("name", fileName);
+            data.append("file", file);
+            //   currentUser.profilePicture = fileName;
+            //   console.log(newPost);
             try {
-                const body = {userId: currentUser._id, profilePicture: fileName}
-            const res = await axios.put("http://localhost:5000/user/updatePic", body);
-            setUser({...user, profilePicture:fileName});
-            console.log(res.data);
+                await axios.post("http://localhost:5000/upload", data);
+            } catch (err) {
+                console.log(err);
+            }
+
+            try {
+                const body = { userId: currentUser._id, profilePicture: fileName }
+                const res = await axios.put("http://localhost:5000/user/updatePic", body);
+                setUser({ ...user, profilePicture: fileName });
+                console.log(res.data);
             } catch (err) {
                 console.log(err);
             }
         }
-      };
-    
+    };
 
-    const updateUser = async() => {
+
+    const updateUser = async () => {
         console.log(username.current.value);
         console.log(bio.current.value);
         console.log(education.current.value);
         console.log(experience.current.value);
         console.log(id, currentUser._id)
-        const body = {userId:currentUser._id, username:username.current.value, bio:bio.current.value, education:education.current.value, experience:experience.current.value};
-        const res = await axios.put(`http://localhost:5000/user/${id}/updatebio`, body );
+        const body = { userId: currentUser._id, username: username.current.value, bio: bio.current.value, education: education.current.value, experience: experience.current.value };
+        const res = await axios.put(`http://localhost:5000/user/${id}/updatebio`, body);
         console.log(res.data);
         setUser(res.data);
     }
 
-    const followUser =  async() => {
+    const followUser = async () => {
         try {
-            const body = {userId:currentUser._id};
-            if(followed) {
+            const body = { userId: currentUser._id };
+            if (followed) {
                 const res = await axios.put(`http://localhost:5000/user/${id}/unfollow`, body);
-                if(res.status === 200)
+                if (res.status === 200)
                     dispatch({ type: "UNFOLLOW", payload: id });
                 console.log(res);
             } else {
                 const res = await axios.put(`http://localhost:5000/user/${id}/follow`, body);
-                if(res.status === 200)
-                    dispatch({type:"FOLLOW", payload: id});
+                if (res.status === 200)
+                    dispatch({ type: "FOLLOW", payload: id });
                 console.log(res);
             }
             setFollowed(!followed);
         } catch (error) {
-            if(error.response)
+            if (error.response)
                 console.error(error.response.data);
             else
                 console.error(error);
@@ -124,18 +124,18 @@ export default function Profile() {
                             <i class="fa-solid fa-camera"></i>
                         </button>
                         <img src={user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "noAvatar.png"} alt="" className={styles.profilepic} />
+                            ? PF + user.profilePicture
+                            : PF + "noAvatar.png"} alt="" className={styles.profilepic} />
                         <button className={styles.editprofile}>
-                        <label htmlFor="file" className="shareOption">
-                            <i class="fa-solid fa-camera"></i>
-                            <input
-                            style={{ display: "none" }}
-                            type="file"
-                            id="file"
-                            accept=".png,.jpeg,.jpg"
-                            onChange={submitHandler}
-                            />
+                            <label htmlFor="file" className="shareOption">
+                                <i class="fa-solid fa-camera"></i>
+                                <input
+                                    style={{ display: "none" }}
+                                    type="file"
+                                    id="file"
+                                    accept=".png,.jpeg,.jpg"
+                                    onChange={submitHandler}
+                                />
                             </label>
                         </button>
                     </div>
@@ -150,7 +150,7 @@ export default function Profile() {
                             </span>
                         )
                     }
-                    
+
                     <Dialog open={open} onClose={handleClose}>
                         <div className={styles.dialog}>
                             <DialogTitle >
@@ -167,7 +167,7 @@ export default function Profile() {
                                 </div>
                                 <div className={styles.dialogbody}>
                                     <span className={styles.dialogtext}>Bio </span>
-                                    <input placeholder="Enter bio here" className={styles.dialoginput} ref={bio}/>
+                                    <input placeholder="Enter bio here" className={styles.dialoginput} ref={bio} />
                                 </div>
                                 <div className={styles.dialogbody}>
                                     <span className={styles.dialogtext}>Education </span>
@@ -195,16 +195,16 @@ export default function Profile() {
                         {
                             id !== currentUser._id && (
                                 <>
-                                <span className={styles.addfriend}>
-                                    <i class="fa-solid fa-user-plus"></i>
-                                    <span className={styles.space} onClick={followUser}>{followed?"UnFollow":"Follow"}</span>
-                                </span>
-                                <Link to="/chat"> 
-                                    <span className={styles.textfriend}>
-                                        <i class="fa-brands fa-facebook-messenger"></i>
-                                        <span className={styles.space}>Message</span>
+                                    <span className={styles.addfriend}>
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <span className={styles.space} onClick={followUser}>{followed ? "UnFollow" : "Follow"}</span>
                                     </span>
-                                </Link>
+                                    <Link to="/chat" className={styles.links}>
+                                        <span className={styles.textfriend}>
+                                            <i class="fa-brands fa-facebook-messenger"></i>
+                                            <span className={styles.space}>Message</span>
+                                        </span>
+                                    </Link>
                                 </>
                             )
                         }
@@ -230,13 +230,13 @@ export default function Profile() {
                                     <h3 className={styles.friend}>Following</h3>
                                     <div className={styles.friendflex}>
                                         {
-                                            followings.map((friend) => 
-                                            <div className={styles.friendlist}>
-                                                <img src={friend.profilePicture
-                    ? PF + friend.profilePicture
-                    : PF + "noAvatar.png"} alt="" className="pic" />
-                                                <Link to={`/profile/${friend._id}`} style={{color:"white"}}><span className={styles.friendname}>{friend.username}</span></Link>
-                                            </div>
+                                            followings.map((friend) =>
+                                                <div className={styles.friendlist}>
+                                                    <img src={friend.profilePicture
+                                                        ? PF + friend.profilePicture
+                                                        : PF + "noAvatar.png"} alt="" className="pic" />
+                                                    <Link to={`/profile/${friend._id}`} className={styles.links} style={{ color: "white" }}><span className={styles.friendname}>{friend.username}</span></Link>
+                                                </div>
                                             )
                                         }
                                     </div>
