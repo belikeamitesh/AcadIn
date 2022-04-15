@@ -127,12 +127,12 @@ export default function Profile() {
                     ? PF + user.profilePicture
                     : PF + "noAvatar.png"} alt="" className={styles.profilepic} />
                         <button className={styles.editprofile}>
-                        <label htmlFor="file" className="shareOption">
+                        <label htmlFor="dp" className="shareOption">
                             <i class="fa-solid fa-camera"></i>
                             <input
                             style={{ display: "none" }}
                             type="file"
-                            id="file"
+                            id="dp"
                             accept=".png,.jpeg,.jpg"
                             onChange={submitHandler}
                             />
