@@ -67,7 +67,10 @@ export default function Profile() {
             try {
                 const body = { userId: currentUser._id, profilePicture: fileName }
                 const res = await axios.put("http://localhost:5000/user/updatePic", body);
-                setUser({ ...user, profilePicture: fileName });
+                if(res.status === 200) {
+                    setUser({ ...user, profilePicture: fileName });
+                    dispatch({type: "UPDATE_DP", payload: fileName});
+                }
                 // console.log(res.data);
             } catch (err) {
                 // console.log(err);

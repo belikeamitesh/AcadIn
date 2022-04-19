@@ -140,7 +140,7 @@ describe('GET posts/comment/:postId', () => {
 });
 
 describe('POST posts/comment/:postId', () => {
-    test("It should return status 200 on succesfully posting the post", done => {
+    test("It should return status 200 on succesfully commenting", done => {
         agent
             .post("/posts/comment/62473f16fa43a5d9017d68f0")
             .send({
@@ -148,6 +148,15 @@ describe('POST posts/comment/:postId', () => {
                 "username":"Amit Kumar",
                 "comment":"Excellent!"
             })
+            .expect(200);
+        done();
+    })
+})
+
+describe('POST posts/:postId/like', () => {
+    test("It should return status 200 on succesfully commenting", done => {
+        agent
+            .put("/posts/comment/62473f16fa43a5d9017d68f0")
             .expect(200);
         done();
     })

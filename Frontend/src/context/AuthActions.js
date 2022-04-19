@@ -21,3 +21,8 @@ export const Unfollow = (userId) => ({
     type: "UNFOLLOW",
     payload: userId,
 });
+
+export const UpdateDP = (dp_url) => ({
+    type: "UPDATE_DP",
+    payload: dp_url
+})
