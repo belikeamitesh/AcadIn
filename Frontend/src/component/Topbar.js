@@ -19,7 +19,7 @@ export default function Topbar() {
     const handleClick = (event) => {
         axios.get(`http://localhost:5000/user/search?username=${query.current.value}`)
         .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setUsers(res.data);
             setAnchorEl(event.target);
         })

@@ -32,7 +32,7 @@ export default function Share(props) {
       data.append("name", fileName);
       data.append("file", file);
       newPost.img = fileName;
-      console.log(newPost);
+      // console.log(newPost);
       try {
         await axios.post("http://localhost:5000/upload", data);
       } catch (err) {}

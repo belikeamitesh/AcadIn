@@ -16,7 +16,7 @@ export default function Comments({comments}) {
     {
       comments.map((comment, idx) => 
         <>
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="flex-start" key={ idx }>
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src={PF + "noAvatar.png"} />
           </ListItemAvatar>

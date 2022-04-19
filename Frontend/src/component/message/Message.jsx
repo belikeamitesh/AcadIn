@@ -3,7 +3,7 @@ import { format } from "timeago.js";
 import React from "react";
 
 export default function Message({ message, own }) {
-  console.log(message, own);
+  // console.log(message, own);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className={own ? "message own" : "message"}>

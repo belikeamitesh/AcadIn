@@ -24,7 +24,7 @@ export default function Messenger() {
   const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        console.log(followings);
+       
         setOpen(true);
     };
     const handleClose = () => {
@@ -62,7 +62,7 @@ export default function Messenger() {
     const getConversations = async () => {
       try {
         const res = await axios.get("http://localhost:5000/conversations/" + user._id);
-        console.log(res);
+        
         setConversations(res.data);
       } catch (err) {
         console.log(err);
@@ -71,7 +71,7 @@ export default function Messenger() {
     const getFriends = async () => {
       try {
         const followingList = await axios.get(`http://localhost:5000/user/friends/${user._id}`);
-        console.log(followingList.data);
+      
         setFollowings(followingList.data);
       } catch (error) {
         console.log(error);

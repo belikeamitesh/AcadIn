@@ -38,19 +38,18 @@ export default function Profile() {
     useEffect(async () => {
         if (!id) return;
         const res = await axios.get(`http://localhost:5000/user/${id}`);
-        console.log(res.data);
+        
         setUser(res.data);
 
         const followingList = await axios.get(`http://localhost:5000/user/friends/${id}`);
-        console.log(followingList.data);
+       
         setFollowings(followingList.data);
     }, [id]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
         // setFile(e.target.files[0]);
-        // console.log("submit handler called")
-        console.log(e.target.files[0]);
+      
         const file = e.target.files[0];
         if (file) {
             const data = new FormData();
@@ -69,23 +68,19 @@ export default function Profile() {
                 const body = { userId: currentUser._id, profilePicture: fileName }
                 const res = await axios.put("http://localhost:5000/user/updatePic", body);
                 setUser({ ...user, profilePicture: fileName });
-                console.log(res.data);
+                // console.log(res.data);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         }
     };
 
 
     const updateUser = async () => {
-        console.log(username.current.value);
-        console.log(bio.current.value);
-        console.log(education.current.value);
-        console.log(experience.current.value);
-        console.log(id, currentUser._id)
+       
         const body = { userId: currentUser._id, username: username.current.value, bio: bio.current.value, education: education.current.value, experience: experience.current.value };
         const res = await axios.put(`http://localhost:5000/user/${id}/updatebio`, body);
-        console.log(res.data);
+        
         setUser(res.data);
     }
 
@@ -96,12 +91,12 @@ export default function Profile() {
                 const res = await axios.put(`http://localhost:5000/user/${id}/unfollow`, body);
                 if (res.status === 200)
                     dispatch({ type: "UNFOLLOW", payload: id });
-                console.log(res);
+                
             } else {
                 const res = await axios.put(`http://localhost:5000/user/${id}/follow`, body);
                 if (res.status === 200)
                     dispatch({ type: "FOLLOW", payload: id });
-                console.log(res);
+                
             }
             setFollowed(!followed);
         } catch (error) {
@@ -130,7 +125,7 @@ export default function Profile() {
                             id === currentUser._id && (
                                 <button className={styles.editprofile}>
                                     <label htmlFor="dp" className="shareOption">
-                                        <i class="fa-solid fa-camera"></i>
+                                        <i className="fa-solid fa-camera"></i>
                                         <input
                                         style={{ display: "none" }}
                                         type="file"
@@ -150,7 +145,7 @@ export default function Profile() {
                     {
                         id === currentUser._id && (
                             <span className={styles.edituserprofile} onClick={handleClickOpen}>
-                                <i class="fa-solid fa-pen"></i>
+                                <i className="fa-solid fa-pen"></i>
                                 <span className={styles.space}>Edit profile</span>
                             </span>
                         )
@@ -201,12 +196,12 @@ export default function Profile() {
                             id !== currentUser._id && (
                                 <>
                                     <span className={styles.addfriend}>
-                                        <i class="fa-solid fa-user-plus"></i>
+                                        <i className="fa-solid fa-user-plus"></i>
                                         <span className={styles.space} onClick={followUser}>{followed ? "UnFollow" : "Follow"}</span>
                                     </span>
                                     <Link to="/chat" className={styles.links}>
                                         <span className={styles.textfriend}>
-                                            <i class="fa-brands fa-facebook-messenger"></i>
+                                            <i className="fa-brands fa-facebook-messenger"></i>
                                             <span className={styles.space}>Message</span>
                                         </span>
                                     </Link>
@@ -236,7 +231,7 @@ export default function Profile() {
                                     <div className={styles.friendflex}>
                                         {
                                             followings.map((friend) =>
-                                                <div className={styles.friendlist}>
+                                                <div key={friend._id} className={styles.friendlist}>
                                                     <img src={friend.profilePicture
                                                         ? PF + friend.profilePicture
                                                         : PF + "noAvatar.png"} alt="" className="pic" />

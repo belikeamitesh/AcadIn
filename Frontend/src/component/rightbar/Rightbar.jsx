@@ -12,7 +12,7 @@ export default function Rightbar() {
     if (!currentUser) return;
 
     const followingList = await axios.get(`http://localhost:5000/user/friends/${currentUser._id}`);
-    console.log(followingList.data);
+    // console.log(followingList.data);
     setFollowings(followingList.data);
   }, [currentUser]);
   return (

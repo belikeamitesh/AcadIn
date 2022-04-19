@@ -29,7 +29,7 @@ export default function Post({ postId, post }) {
 
 function element( ){
  setComment(!comment)
- console.log('hello comment')
+//  console.log('hello comment')
 };
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function element( ){
   };
 
   const commentHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setCommentData(e.target.value);
   }  
   const commentPost = async (id) => {

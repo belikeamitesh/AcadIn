@@ -23,7 +23,7 @@ export default function Login() {
         dispatch({ type: "LOGIN_START" });
         try {
             const res = await axios.post("http://localhost:5000/auth/login", { email: email.current.value, password: password.current.value });
-            console.log(res);
+            // console.log(res);
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
             navigate('/');
         } catch (error) {
@@ -39,7 +39,7 @@ export default function Login() {
         }
 
     }
-    console.log(user);
+    // console.log(user);
     return (
         document.body.style.backgroundColor = "white",
         <div className={styles.login}>
