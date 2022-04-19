@@ -42,6 +42,7 @@ export default function Share(props) {
       // window.location.reload();
       setDesc("");
       props.onSubmit();
+      setFile(null);
     } catch (err) {}
   };
 
