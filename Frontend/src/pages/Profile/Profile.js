@@ -18,7 +18,7 @@ export default function Profile() {
     const [user, setUser] = useState({});
     const { user: currentUser, dispatch } = useContext(AuthContext);
     const { id } = useParams();
-    const [followed, setFollowed] = useState(currentUser.followings.includes(id));
+    const [followed, setFollowed] = useState(false);
     const [followings, setFollowings] = useState([]);
     // const [file, setFile] = useState(null);
 
@@ -44,6 +44,7 @@ export default function Profile() {
         const followingList = await axios.get(`http://localhost:5000/user/friends/${id}`);
        
         setFollowings(followingList.data);
+        setFollowed(currentUser.followings.includes(id));
     }, [id]);
 
     const submitHandler = async (e) => {
